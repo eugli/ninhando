@@ -285,6 +285,7 @@ sketch
 
 # dependencies
 /node_modules
+/jsnes-web/node_modules
 /.pnp
 .pnp.js
 
