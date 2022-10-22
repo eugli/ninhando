@@ -1,12 +1,17 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import './index.scss';
 import Detection from './Detection';
 
 const Game = () => {
+
+    const [gesture, setGesture] = useState('');
+
     return (
         <div className="Game">
-            <Detection/>    
+            <Detection
+                setGesture={setGesture}
+            />    
         </div>
     );
 }

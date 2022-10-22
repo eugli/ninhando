@@ -8,7 +8,9 @@ import * as fp from "fingerpose";
 import { moveUp, moveDown, moveLeft, moveRight, rotateLeft, rotateRight } from './Movement';
 import { drawHand } from "./utilities";
 
-function Gesture() {
+const Gesture = (
+    setGesture,
+) => {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
 
