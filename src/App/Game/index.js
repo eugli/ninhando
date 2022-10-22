@@ -5,7 +5,7 @@ import Detection from './Detection';
 
 const Game = () => {
 
-    const [gesture, setGesture] = useState('');
+    const [gesture, setGesture] = useState('waiting for gesture');
 
     return (
         <div className="Game">
