@@ -9,7 +9,7 @@ import { moveUp, moveDown, moveLeft, moveRight } from './Movement';
 import { drawHand } from "./utilities";
 
 const Gesture = (
-    setKeyInput
+    setGesture,
 ) => {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);

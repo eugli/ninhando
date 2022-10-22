@@ -5,12 +5,12 @@ import Detection from './Detection';
 
 const Game = () => {
 
-    const [keyInput, setKeyInput] = useState('');
+    const [gesture, setGesture] = useState('');
 
     return (
         <div className="Game">
             <Detection
-                setKeyInput={setKeyInput}
+                setGesture={setGesture}
             />    
         </div>
     );
