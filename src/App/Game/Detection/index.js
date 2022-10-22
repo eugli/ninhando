@@ -9,7 +9,7 @@ import { moveUp, moveDown, moveLeft, moveRight, rotateLeft, rotateRight } from '
 import { drawHand } from "./utilities";
 
 const Gesture = (
-    setGesture,
+  setGesture,
 ) => {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
@@ -57,7 +57,6 @@ const Gesture = (
           moveRight,
           rotateLeft,
           rotateRight,
-          fp.Gestures.ThumbsUpGesture,
         ]);
         const gesture = await GE.estimate(hand[0].landmarks, 4);
         if (gesture.gestures !== undefined && gesture.gestures.length > 0) {
@@ -71,6 +70,7 @@ const Gesture = (
 
           const finalGesture = gesture.gestures[maxConfidence].name;
           console.log(finalGesture);
+          setGesture(finalGesture);
 
           // Draw mesh
           const ctx = canvasRef.current.getContext("2d");

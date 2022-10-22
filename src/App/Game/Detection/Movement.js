@@ -7,6 +7,9 @@ export const moveRight = new GestureDescription('right');
 export const rotateLeft = new GestureDescription('rotate-left');
 export const rotateRight = new GestureDescription('rotate-right');
 
+let fingers = [Finger.Thumb, Finger.Index, Finger.Middle, Finger.Ring, Finger.Pinky];
+
+
 //rotate-left
 for (let i = 1; i < fingers.length; i++) {
     rotateLeft.addDirection(fingers[i], FingerDirection.VerticalDown, 0.9);
@@ -21,7 +24,6 @@ for (let i = 1; i < fingers.length; i++) {
 rotateLeft.addDirection(Finger.Thumb, FingerDirection.HorizontalRight, 1);
 
 //up
-let fingers = [Finger.Thumb, Finger.Index, Finger.Middle, Finger.Ring, Finger.Pinky];
 for (let i = 0; i < fingers.length; i++) {
     moveUp.addDirection(fingers[i], FingerDirection.VerticalUp, 0.9);
     moveUp.addCurl(fingers[i], FingerCurl.NoCurl, 0.8);
