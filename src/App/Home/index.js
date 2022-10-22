@@ -4,7 +4,7 @@ import './index.scss';
 
 const Home = () => {
     return (
-        <div className="Home Synthwave">
+        <div className="Home">
             <h1>Hello World!</h1>
             <h1>Hello World!</h1>
             <h1>Hello World!</h1>       
