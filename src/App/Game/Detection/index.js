@@ -8,9 +8,9 @@ import * as fp from "fingerpose";
 import { moveUp, moveDown, moveLeft, moveRight, rotateLeft, rotateRight, startGame } from './Movement';
 import { drawHand } from "./utilities";
 
-const Gesture = (
-  setGesture,
-) => {
+const Gesture = ({
+  setGesture
+}) => {
   var finalGesture = '';
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
@@ -72,6 +72,7 @@ const Gesture = (
 
           finalGesture = gesture.gestures[maxConfidence].name;
           console.log(finalGesture);
+          setGesture(finalGesture);
 
           // Draw mesh
           const ctx = canvasRef.current.getContext("2d");
@@ -82,12 +83,6 @@ const Gesture = (
   };
 
   useEffect(() => { runHandpose() }, []);
-  useEffect(() => {
-    const temp = async () => {
-      setGesture(finalGesture);
-    };
-    temp();
-  }, [finalGesture, setGesture]);
 
   return (
     <div className="App">
