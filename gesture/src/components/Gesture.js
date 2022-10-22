@@ -5,13 +5,16 @@ import Webcam from "react-webcam";
 import * as tf from "@tensorflow/tfjs";
 
 import * as fp from "fingerpose";
-import {moveUp, moveDown, moveLeft, moveRight} from '../Movement';
+import { moveUp, moveDown, moveLeft, moveRight } from './Movement';
+import { drawHand } from "./utilities";
 
 function Gesture() {
   const webcamRef = useRef(null);
+  const canvasRef = useRef(null);
 
   const runHandpose = async () => {
     const net = await handpose.load();
+
     console.log("Handpose model loaded.");
     //  Loop and detect hands
     setInterval(() => {
@@ -34,16 +37,21 @@ function Gesture() {
       // Set video width
       webcamRef.current.video.width = videoWidth;
       webcamRef.current.video.height = videoHeight;
-      
+
+      // Set canvas height and width
+      canvasRef.current.width = videoWidth;
+      canvasRef.current.height = videoHeight;
+
       // Make Detections
-      const hand = await net.estimateHands(video);
+      const hand = await net.estimateHands(video, true);
+
       console.log(hand);
 
       if (hand.length > 0) {
         const GE = new fp.GestureEstimator([
           moveDown,
           moveUp,
-          moveLeft, 
+          moveLeft,
           moveRight,
         ]);
         const gesture = await GE.estimate(hand[0].landmarks, 4);
@@ -58,12 +66,16 @@ function Gesture() {
 
           const finalGesture = gesture.gestures[maxConfidence].name;
           console.log(finalGesture);
+
+          // Draw mesh
+          const ctx = canvasRef.current.getContext("2d");
+          drawHand(hand, ctx);
         }
       }
     }
   };
 
-  useEffect(()=>{runHandpose()},[]);
+  useEffect(() => { runHandpose() }, []);
 
   return (
     <div className="App">
@@ -84,6 +96,20 @@ function Gesture() {
           }}
         />
 
+        <canvas
+          ref={canvasRef}
+          style={{
+            position: "absolute",
+            marginLeft: "auto",
+            marginRight: "auto",
+            left: 0,
+            right: 0,
+            textAlign: "center",
+            zindex: 9,
+            width: 640,
+            height: 480,
+          }}
+        />
       </header>
     </div>
   );
