@@ -3,6 +3,17 @@ import React, { useState } from 'react';
 import './index.scss';
 import Detection from './Detection';
 
+const keyEvent = (key) => {
+    const event = new KeyboardEvent('keydown', { key });
+    document.dispatchEvent(event);
+};
+
+//TODO
+const TETRIS_GESTURE_KEY_MAP = {
+    'moveDown': 'ArrowDown',
+    'moveUp': 'ArrowUp',
+}
+
 const Game = () => {
 
     const [gesture, setGesture] = useState('waiting for gesture');
