@@ -1,10 +1,13 @@
+@import './_variables.scss';
 @import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Exo+2&family=Noto+Sans&family=Ubuntu:wght@400;500&family=Volkhov&display=swap');
 
-body {
+html, body, #root {
   margin: 0;
+  width: 100%;
   font-family: -apple-system, BlinkMacSystemFont, 'Ubuntu', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: $papaya;
 }
 
 code {

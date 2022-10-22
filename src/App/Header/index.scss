@@ -14,14 +14,10 @@
   color: white;
 }
 
-.BottomHeader {
-  position: fixed;
-  top: 0;
-  height: 5rem;
+.PhantomHeader { 
+  margin: 0 auto;
   width: 100%;
-
-  display: grid;
-  background-color: $bone;
+  height: 4rem;
 }
 
 .Header h1 {
