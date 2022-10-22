@@ -1,0 +1,14 @@
+@import '../../_variables.scss';
+
+.footer { 
+    margin: 0 auto;
+    font-size: medium;
+    font-weight: bold;
+    text-align: center;
+
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: $siteFooterHeight;
+    background-color: $themeColor;
+}

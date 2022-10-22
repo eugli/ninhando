@@ -1,0 +1,20 @@
+@import '../../_variables.scss';
+
+.Header {
+  position: fixed;
+  top: 0;
+  height: 2rem;
+  width: 100%;
+
+  display: grid;
+
+  background-color: $themeColor;
+}
+
+.Nav {
+  display: grid;
+  grid-area: nav;
+  grid-template-columns: repeat(4, auto);
+  align-items: left;
+  justify-items: left;
+}
