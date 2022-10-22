@@ -59,7 +59,6 @@ const Gesture = (
           rotateLeft,
           rotateRight,
           startGame,
-          endGame,
         ]);
         const gesture = await GE.estimate(hand[0].landmarks, 4);
         if (gesture.gestures !== undefined && gesture.gestures.length > 0) {
