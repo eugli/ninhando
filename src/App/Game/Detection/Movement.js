@@ -13,7 +13,7 @@ let fingers = [Finger.Thumb, Finger.Index, Finger.Middle, Finger.Ring, Finger.Pi
 
 //start game: fist
 for (let i = 0; i < fingers.length; i++) {
-    startGame.addCurl(fingers[i], FingerCurl.FullCurl, 0.9);
+    startGame.addCurl(fingers[i], FingerCurl.FullCurl, 1);
 }
 
 //rotate-left: leftward pointing gun
@@ -26,11 +26,13 @@ for (let i = 2; i < fingers.length; i++) {
 }
 
 //rotate-right: upward pointing gun
-rotateRight.addDirection(Finger.Index, FingerDirection.VerticalUp, 0.9);
+rotateRight.addDirection(Finger.Index, FingerDirection.VerticalUp, 1);
 rotateRight.addDirection(Finger.Thumb, FingerDirection.DiagonalUpRight, 0.9);
+rotateRight.addDirection(Finger.Pinky, FingerDirection.VerticalUp, 0.9);
 rotateRight.addCurl(Finger.Index, FingerCurl.NoCurl, 0.9);
 rotateRight.addCurl(Finger.Thumb, FingerCurl.NoCurl, 0.9);
-for (let i = 2; i < fingers.length; i++) {
+rotateRight.addCurl(Finger.Pinky, FingerCurl.NoCurl, 0.9);
+for (let i = 2; i < fingers.length - 1; i++) {
     rotateRight.addCurl(fingers[i], FingerCurl.FullCurl, 0.8);
 }
 
@@ -45,8 +47,9 @@ for (let i = 1; i < fingers.length; i++) {
     moveDown.addDirection(fingers[i], FingerDirection.VerticalDown, 0.9);
     moveDown.addCurl(fingers[i], FingerCurl.HalfCurl, 0.8);
 }
-
-moveDown.addCurl(Finger.Thumb, FingerCurl.NoCurl, 0.7);
+moveDown.addCurl(Finger.Thumb, FingerCurl.NoCurl, 0.8);
+moveDown.addDirection(Finger.Thumb, FingerDirection.HorizontalLeft, 0.7);
+moveDown.addDirection(Finger.Thumb, FingerDirection.DiagonalUpLeft, 0.7);
 
 //left
 for (let i = 1; i < fingers.length; i++) {
@@ -59,6 +62,7 @@ moveLeft.addDirection(Finger.Thumb, FingerDirection.DiagonalUpLeft, 0.7);
 //right 
 for (let i = 1; i < fingers.length; i++) {
     moveRight.addDirection(fingers[i], FingerDirection.HorizontalRight, 0.9);
+    moveRight.addDirection(fingers[i], FingerDirection.DiagonalUpRight, 0.9);
     moveRight.addCurl(fingers[i], FingerCurl.NoCurl, 0.8);
 }
-moveRight.addDirection(Finger.Thumb, FingerDirection.DiagonalUpRight, 0.7);
+moveRight.addDirection(Finger.Thumb, FingerDirection.DiagonalUpRight, 1);
