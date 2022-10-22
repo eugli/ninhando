@@ -11,6 +11,7 @@ import { drawHand } from "./utilities";
 const Gesture = (
   setGesture,
 ) => {
+  var finalGesture = '';
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
 
@@ -68,9 +69,8 @@ const Gesture = (
             Math.max.apply(null, confidence)
           );
 
-          const finalGesture = gesture.gestures[maxConfidence].name;
+          finalGesture = gesture.gestures[maxConfidence].name;
           console.log(finalGesture);
-          setGesture(finalGesture);
 
           // Draw mesh
           const ctx = canvasRef.current.getContext("2d");
@@ -81,6 +81,12 @@ const Gesture = (
   };
 
   useEffect(() => { runHandpose() }, []);
+  useEffect(() => {
+    const temp = async () => {
+      setGesture(finalGesture);
+    };
+   temp();
+  }, [finalGesture, setGesture]);
 
   return (
     <div className="App">
