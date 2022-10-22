@@ -5,10 +5,13 @@ import Webcam from "react-webcam";
 import * as tf from "@tensorflow/tfjs";
 
 import * as fp from "fingerpose";
-import { moveUp, moveDown, moveLeft, moveRight } from './Movement';
+import { moveUp, moveDown, moveLeft, moveRight, rotateLeft, rotateRight, startGame } from './Movement';
 import { drawHand } from "./utilities";
 
-function Gesture() {
+const Gesture = ({
+  setGesture
+}) => {
+  var finalGesture = '';
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
 
@@ -53,6 +56,9 @@ function Gesture() {
           moveUp,
           moveLeft,
           moveRight,
+          rotateLeft,
+          rotateRight,
+          startGame,
         ]);
         const gesture = await GE.estimate(hand[0].landmarks, 4);
         if (gesture.gestures !== undefined && gesture.gestures.length > 0) {
@@ -64,8 +70,9 @@ function Gesture() {
             Math.max.apply(null, confidence)
           );
 
-          const finalGesture = gesture.gestures[maxConfidence].name;
+          finalGesture = gesture.gestures[maxConfidence].name;
           console.log(finalGesture);
+          setGesture(finalGesture);
 
           // Draw mesh
           const ctx = canvasRef.current.getContext("2d");
@@ -78,39 +85,24 @@ function Gesture() {
   useEffect(() => { runHandpose() }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <Webcam mirrored={true}
+    <div className="detection-container">
+      <div className="bottom-layer">
+        <Webcam
+          className="detection"
+          mirrored={true}
           ref={webcamRef}
           style={{
-            position: "absolute",
-            marginLeft: "auto",
-            marginRight: "auto",
-
-            left: 0,
-            right: 0,
-            textAlign: "center",
-            zindex: 9,
-            width: 640,
-            height: 480,
+            borderRadius: "5%",
           }}
         />
+      </div>
 
+      <div className="top-layer">
         <canvas
+          className="detection"
           ref={canvasRef}
-          style={{
-            position: "absolute",
-            marginLeft: "auto",
-            marginRight: "auto",
-            left: 0,
-            right: 0,
-            textAlign: "center",
-            zindex: 9,
-            width: 640,
-            height: 480,
-          }}
         />
-      </header>
+      </div>
     </div>
   );
 }
