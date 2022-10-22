@@ -9,10 +9,17 @@ const Game = () => {
 
     return (
         <div className="Game">
-            <Detection
-                setGesture={setGesture}
-            />
-            <h1>{gesture}</h1>
+            <div className="game-container">
+                <h1>Game</h1>
+            </div>
+            <div className='controller-container'>
+                <div className="controller">
+                    <h1>Gesture: {gesture}</h1>
+                </div>
+                <Detection
+                    setGesture={setGesture}
+                />
+            </div>
         </div>
     );
 }

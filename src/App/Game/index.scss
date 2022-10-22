@@ -1,1 +1,22 @@
 @import '../../_variables.scss';
+
+.Game {
+    display: inline-flex;
+}
+
+.game-container {
+    margin: 0 auto;
+    border: 1px solid black;
+
+}
+
+.controller-container {
+    margin: 0 auto;
+    flex-direction: column;
+}
+
+.detection-container {
+    margin: 0 auto;
+    vertical-align: middle;
+}
+

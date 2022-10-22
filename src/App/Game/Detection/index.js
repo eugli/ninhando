@@ -84,32 +84,18 @@ const Gesture = ({
 
   useEffect(() => { runHandpose() }, []);
 
-  const style = {
-    position: "absolute",
-    marginLeft: "auto",
-    marginRight: "auto",
-
-    left: 0,
-    right: 0,
-    textAlign: "center",
-    zindex: 9,
-    width: 640,
-    height: 480,
-  }
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <Webcam mirrored={true}
+    <div className="detection-container">
+        <Webcam
+          className="detection"
+          mirrored={true}
           ref={webcamRef}
-          style={{...style}}
         />
 
         <canvas
+          className="detection"
           ref={canvasRef}
-          style={{...style}}
         />
-      </header>
     </div>
   );
 }
