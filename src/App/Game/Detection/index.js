@@ -86,16 +86,23 @@ const Gesture = ({
 
   return (
     <div className="detection-container">
+      <div className="bottom-layer">
         <Webcam
           className="detection"
           mirrored={true}
           ref={webcamRef}
+          style={{
+            borderRadius: "5%",
+          }}
         />
+      </div>
 
+      <div className="top-layer">
         <canvas
           className="detection"
           ref={canvasRef}
         />
+      </div>
     </div>
   );
 }

@@ -20,3 +20,14 @@
     vertical-align: middle;
 }
 
+.top-layer {
+    position: absolute;
+    z-index: 2;
+    border-radius: 5%;
+}
+
+.bottom-layer {
+    position: absolute;
+    z-index: 1;
+    border-radius: "5%";
+}
