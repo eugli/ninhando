@@ -1,5 +1,6 @@
 import { Box } from '@mui/material';
 import './index.scss';
+import React from 'react';
 
 const Footer = () => {
   return (
