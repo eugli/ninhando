@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import Gesture from './Gesture';
+import Gesture from './components/Gesture';
 
 function App() {
   return (

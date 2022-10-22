@@ -5,7 +5,7 @@ import Webcam from "react-webcam";
 import * as tf from "@tensorflow/tfjs";
 
 import * as fp from "fingerpose";
-import {moveUp, moveDown, moveLeft, moveRight} from './Movement';
+import {moveUp, moveDown, moveLeft, moveRight} from '../Movement';
 
 function Gesture() {
   const webcamRef = useRef(null);
