@@ -7,12 +7,16 @@
     "@emotion/styled": "^11.10.4",
     "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.10.10",
+    "@tensorflow-models/handpose": "^0.0.7",
+    "@tensorflow/tfjs": "^4.0.0",
+    "fingerpose": "^0.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.2",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^4.0.3",
+    "react-webcam": "^7.0.1",
     "sass": "^1.55.0",
-    "synthwave": "^4.25.0"
+    "synthwave": "^4.10.0"
   },
   "scripts": {
     "start": "react-scripts start",

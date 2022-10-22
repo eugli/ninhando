@@ -1,11 +1,12 @@
 
 import React from 'react';
 import './index.scss';
+import Detection from './Detection';
 
 const Game = () => {
     return (
         <div className="Game">
-            <h1>Game World!</h1>     
+            <Detection/>    
         </div>
     );
 }
