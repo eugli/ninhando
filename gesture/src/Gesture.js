@@ -34,8 +34,6 @@ function Gesture() {
       // Set video width
       webcamRef.current.video.width = videoWidth;
       webcamRef.current.video.height = videoHeight;
-
-      console.log(webcamRef);
       
       // Make Detections
       const hand = await net.estimateHands(video);
