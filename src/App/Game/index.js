@@ -22,6 +22,7 @@ const Game = () => {
         <div className="Game">
             <div className="game-container">
                 <h1>Game</h1>
+                <iframe title="game" src="https://xem.github.io/jsnes-web/"></iframe>
             </div>
             <div className='controller-container'>
                 <div className="controller">
