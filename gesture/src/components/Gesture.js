@@ -60,7 +60,8 @@ const Gesture = () => {
                     fp.Gestures.ThumbsUpGesture,
                     loveYouGesture
                 ]);
-                const gesture = await GE.estimate(hand[0].keypoints3D, 4);
+                const scaledKeypoints3D = hand[0].keypoints3D.map((point)=>{point.x*=videoWidth*10; point.y*=videoHeight*10; point.z*=videoWidth*10; return [point.x, point.y, point.z]})
+                const gesture = await GE.estimate(scaledKeypoints3D, 4);
                 if (gesture.gestures !== undefined && gesture.gestures.length > 0) {
                     console.log(gesture.gestures);
 
