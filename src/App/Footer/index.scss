@@ -1,14 +1,23 @@
 @import '../../_variables.scss';
 
-.footer { 
+.Footer { 
     margin: 0 auto;
     font-size: medium;
     font-weight: bold;
-    text-align: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     position: fixed;
     bottom: 0;
     width: 100%;
-    height: $siteFooterHeight;
-    background-color: $themeColor;
+    height: 2rem;
+    background-color: $vanilla;
+    color: white;
+}
+
+.Heart {
+    margin: 0 0.25rem;
+    color: red;
 }

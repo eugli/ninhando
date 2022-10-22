@@ -3,18 +3,28 @@
 .Header {
   position: fixed;
   top: 0;
-  height: 2rem;
+  height: 4rem;
+  width: 100%;
+  z-index: 10;
+
+  display: grid;
+  align-items: center;
+  
+  background-color: $vanilla;
+  color: white;
+}
+
+.BottomHeader {
+  position: fixed;
+  top: 0;
+  height: 5rem;
   width: 100%;
 
   display: grid;
-
-  background-color: $themeColor;
+  background-color: $bone;
 }
 
-.Nav {
-  display: grid;
-  grid-area: nav;
-  grid-template-columns: repeat(4, auto);
-  align-items: left;
-  justify-items: left;
+.Header h1 {
+  font-size: 2em;
+  font-family: "Bungee Inline", "cursive";
 }
