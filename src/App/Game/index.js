@@ -11,7 +11,8 @@ const Game = () => {
         <div className="Game">
             <Detection
                 setGesture={setGesture}
-            />    
+            />
+            <h1>{gesture}</h1>
         </div>
     );
 }
