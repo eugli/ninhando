@@ -6,22 +6,33 @@ export const moveLeft = new GestureDescription('left');
 export const moveRight = new GestureDescription('right');
 export const rotateLeft = new GestureDescription('rotate-left');
 export const rotateRight = new GestureDescription('rotate-right');
+export const startGame = new GestureDescription('start-game');
 
 let fingers = [Finger.Thumb, Finger.Index, Finger.Middle, Finger.Ring, Finger.Pinky];
 
 
-//rotate-left
-for (let i = 1; i < fingers.length; i++) {
-    rotateLeft.addDirection(fingers[i], FingerDirection.VerticalDown, 0.9);
-    rotateLeft.addCurl(fingers[i], FingerCurl.FullCurl, 0.8);
+//start game: fist
+for (let i = 0; i < fingers.length; i++) {
+    startGame.addCurl(fingers[i], FingerCurl.FullCurl, 0.9);
 }
-rotateLeft.addDirection(Finger.Thumb, FingerDirection.HorizontalLeft, 1);
 
-//rotate-right
-for (let i = 1; i < fingers.length; i++) {
+//rotate-left: leftward pointing gun
+rotateLeft.addDirection(Finger.Index, FingerDirection.HorizontalLeft, 0.9);
+rotateLeft.addDirection(Finger.Thumb, FingerDirection.VerticalUp, 0.9);
+rotateLeft.addCurl(Finger.Index, FingerCurl.NoCurl, 0.9);
+rotateLeft.addCurl(Finger.Thumb, FingerCurl.NoCurl, 0.9);
+for (let i = 2; i < fingers.length; i++) {
     rotateLeft.addCurl(fingers[i], FingerCurl.FullCurl, 0.8);
 }
-rotateLeft.addDirection(Finger.Thumb, FingerDirection.HorizontalRight, 1);
+
+//rotate-right: upward pointing gun
+rotateRight.addDirection(Finger.Index, FingerDirection.VerticalUp, 0.9);
+rotateRight.addDirection(Finger.Thumb, FingerDirection.DiagonalUpRight, 0.9);
+rotateRight.addCurl(Finger.Index, FingerCurl.NoCurl, 0.9);
+rotateRight.addCurl(Finger.Thumb, FingerCurl.NoCurl, 0.9);
+for (let i = 2; i < fingers.length; i++) {
+    rotateRight.addCurl(fingers[i], FingerCurl.FullCurl, 0.8);
+}
 
 //up
 for (let i = 0; i < fingers.length; i++) {

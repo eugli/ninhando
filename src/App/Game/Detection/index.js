@@ -5,7 +5,7 @@ import Webcam from "react-webcam";
 import * as tf from "@tensorflow/tfjs";
 
 import * as fp from "fingerpose";
-import { moveUp, moveDown, moveLeft, moveRight, rotateLeft, rotateRight } from './Movement';
+import { moveUp, moveDown, moveLeft, moveRight, rotateLeft, rotateRight, startGame } from './Movement';
 import { drawHand } from "./utilities";
 
 const Gesture = ({
@@ -58,6 +58,7 @@ const Gesture = ({
           moveRight,
           rotateLeft,
           rotateRight,
+          startGame,
         ]);
         const gesture = await GE.estimate(hand[0].landmarks, 4);
         if (gesture.gestures !== undefined && gesture.gestures.length > 0) {
