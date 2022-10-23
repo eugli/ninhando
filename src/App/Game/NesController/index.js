@@ -31,10 +31,10 @@ function NesController({ gestureMode }) {
                         </div>
                         <div class="vertical">
                             {
-                                gestureMode == "left" && <div class="arrowrh-l"></div>
+                                gestureMode === "left" && <div class="arrowrh-l"></div>
                             }
                             {
-                                gestureMode != "left" && <div class="arrowrh"></div>
+                                gestureMode !== "left" && <div class="arrowrh"></div>
                             }
                             <div class="arrowlf"></div>
                             <div class="arrowrh"></div>
@@ -47,26 +47,26 @@ function NesController({ gestureMode }) {
                     <div class="buttons-a-b">
                         <div class="btn-border">
                             {
-                                gestureMode == 'rotate-right' && <div class="btn-round a"></div>
+                                gestureMode === 'rotate-right' && <div class="btn-round a"></div>
                             }{
-                                gestureMode != 'rotate-right' && <div class="btn-round-a a"></div>
+                                gestureMode !== 'rotate-right' && <div class="btn-round-a a"></div>
                             }
                         </div>
 
                         <div class="btn-border">
                             {
-                                gestureMode == 'rotate-left' && <div class="btn-round b"></div>
+                                gestureMode === 'rotate-left' && <div class="btn-round b"></div>
                             }{
-                                gestureMode != 'rotate-left' && <div class="btn-round-a a"></div>
+                                gestureMode !== 'rotate-left' && <div class="btn-round-a a"></div>
                             }
                         </div>
                     </div>
                     <div class="buttons-select">
                         <div class="btn-central-a select"></div>
                         {
-                            gestureMode != 'start-game' && <div class="btn-central-a start"></div>
+                            gestureMode !== 'start-game' && <div class="btn-central-a start"></div>
                         } {
-                            gestureMode == 'start-game' && <div class="btn-central start"></div>
+                            gestureMode === 'start-game' && <div class="btn-central start"></div>
                         }
 
                     </div>

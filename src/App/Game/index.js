@@ -1,33 +1,54 @@
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import './index.scss';
 import Detection from './Detection';
 import NesController from './NesController';
+//import Emulator from './Emulator';
 
-const keyEvent = (key) => {
-    const event = new KeyboardEvent('keydown', { key });
-    document.dispatchEvent(event);
-};
 
 //TODO
 const TETRIS_GESTURE_KEY_MAP = {
-    'moveDown': '',
-    'moveUp': 'w',
-    'moveLeft': 'a',
-    "moveRight": 'd',
-    "rotateLeft": 'A',
-    "rotateright": "B",
-};
+    'down': 40,
+    'up': 38,
+    'right': 39,
+    'left': 37,
+    'rotate-left': 88,
+    'rotate-right': 67,
+    'start-game': 13
+}
 
-const Game = () => {
-    const ref = useRef();
-    const [gesture, setGesture] = useState('waiting for gesture');
+const Game = ({ game }) => {
+    const [gesture, setGesture] = useState('loading gesture...');
+
+    const keyPress = (key) => {
+        let frame = document.getElementById('emulator').contentDocument;
+        var event = new KeyboardEvent('keydown', { key });
+        document.dispatchEvent(event);
+        console.log("event1", event);
+        event = new KeyboardEvent('keyup', { key });
+        document.dispatchEvent(event);
+        console.log("event2", event)
+    };
+
+    const keyEvent = (gesture) => {
+        setGesture(gesture);
+        keyPress(TETRIS_GESTURE_KEY_MAP[gesture]);
+        console.log("pressed", gesture);
+        if (game === 'tetris') {
+            keyPress(TETRIS_GESTURE_KEY_MAP[gesture]);
+        }
+    }
+
 
     return (
         <div className="Game">
             <div className="game-container">
-                <h1>Game</h1>
-                <iframe title="game" src="https://xem.github.io/jsnes-web/"></iframe>
+                {
+                    //<Emulator/>
+                }
+                {
+                    <iframe id="emulator" width="512" height="480" title="game" src="https://xem.github.io/jsnes-web/"></iframe>
+                }
             </div>
             <div className='controller-container'>
                 <div className="controller">
@@ -36,7 +57,7 @@ const Game = () => {
 
                 </div>
                 <Detection
-                    setGesture={setGesture}
+                    keyEvent={keyEvent}
                 />
             </div>
         </div>
