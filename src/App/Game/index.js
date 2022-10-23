@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import './index.scss';
 import Detection from './Detection';
-//import Emulator from './Emulator';
+import Emulator from './Emulator';
 
 
 //TODO
@@ -43,10 +43,10 @@ const Game = ({game}) => {
         <div className="Game">
             <div className="game-container">
                 {
-                    //<Emulator/>
+                    <Emulator/>
                 }
                 {
-                    <iframe id="emulator" width="512" height="480" title="game" src="https://xem.github.io/jsnes-web/"></iframe>
+                    //<iframe id="emulator" width="512" height="480" title="game" src="https://xem.github.io/jsnes-web/"></iframe>
                 }
             </div>
             <div className='controller-container'>

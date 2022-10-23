@@ -1,18 +1,18 @@
 import React, { useRef, useEffect } from 'react';
 import * as jsnes from 'jsnes';
-import * as fs from 'fs';
 
 // Canvas + framebuffer
 // ====================
 
 const NES = () => {
 
-    const canvasRef = useRef(null);
+    const canvasRef = useRef();
 
+    var ctx;
 
-    canvasRef.width = 512;
-    canvasRef.height = 480;
-    var ctx = canvasRef.current.getContext("2d");
+    React.useEffect(() => {
+        ctx = canvasRef.current.getContext('2d');
+      });
     var imageData = ctx.getImageData(0, 0, 256, 240);
     var frameBuffer = new ArrayBuffer(imageData.data.length);
     var frameBuffer8 = new Uint8ClampedArray(frameBuffer);
@@ -44,60 +44,82 @@ const NES = () => {
     var currentSample = 0;
 
 
+    // Load ROM + Start emulator
+    // =========================
+    var file = new XMLHttpRequest();
+    file.onchange = () => {
+        var fileReader = new FileReader();
+        fileReader.readAsBinaryString(file.files[0]);
+        fileReader.onload = () => {
 
-    var romData = fs.readFileSync('roms/tetris.nes', { encoding: 'binary' });
+            file.remove();
 
-    var nes = new jsnes.NES({
+            var nes = new jsnes.NES({
 
-        // Display each new frame on the canvas
-        onFrame: function (frameBuffer) {
-            var i = 0;
-            for (var y = 0; y < 256; ++y) {
-                for (var x = 0; x < 240; ++x) {
-                    i = y * 256 + x;
-                    frameBuffer32[i] = 0xff000000 | frameBuffer[i];
-                }
+                // Display each new frame on the canvas
+                onFrame: function (frameBuffer) {
+                    var i = 0;
+                    for (var y = 0; y < 256; ++y) {
+                        for (var x = 0; x < 240; ++x) {
+                            i = y * 256 + x;
+                            frameBuffer32[i] = 0xff000000 | frameBuffer[i];
+                        }
+                    }
+                    imageData.data.set(frameBuffer8);
+                    ctx.putImageData(imageData, 0, 0);
+                },
+
+                // Add new audio samples to the Audio buffers
+                onAudioSample: function (left, right) {
+                    //console.log(left, right);
+                    leftSamples.push(left);
+                    rightSamples.push(right);
+                },
+
+                // Pass the browser's sample rate to the emulator
+                sampleRate: 44100,
+            });
+
+            // Send ROM to emulator
+            nes.loadROM(fileReader.result);
+
+            // 60 fps loop
+            setInterval(nes.frame, 16);
+
+            // Controller #1 keys listeners
+            onkeydown = onkeyup = e => {
+                nes[e.type === "keyup" ? "buttonUp" : "buttonDown"](
+                    1,
+                    jsnes.Controller["BUTTON_" +
+                    {
+                        37: "LEFT",
+                        38: "UP",
+                        39: "RIGHT",
+                        40: "DOWN",
+                        88: "A", // X
+                        67: "B", // C
+                        27: "SELECT",
+                        13: "START"
+                    }
+                    ]
+                )
             }
-            imageData.data.set(frameBuffer8);
-            ctx.putImageData(imageData, 0, 0);
-        },
 
-        // Add new audio samples to the Audio buffers
-        onAudioSample: function (left, right) {
-            //console.log(left, right);
-            leftSamples.push(left);
-            rightSamples.push(right);
-        },
 
-        // Pass the browser's sample rate to the emulator
-        sampleRate: 44100,
-    });
-
-    // Send ROM to emulator
-    nes.loadROM(romData);
-
-    // 60 fps loop
-    setInterval(nes.frame, 16);
-
-    // Controller #1 keys listeners
-    onkeydown = onkeyup = e => {
-        nes[e.type == "keyup" ? "buttonUp" : "buttonDown"](
-            1,
-            jsnes.Controller["BUTTON_" +
-            {
-                37: "LEFT",
-                38: "UP",
-                39: "RIGHT",
-                40: "DOWN",
-                88: "A", // X
-                67: "B", // C
-                27: "SELECT",
-                13: "START"
-            }[e.keyCode]
-            ]
-        )
+            // Or: load ROM from disk
+            /*
+            filename = "roms/smb.nes";
+            file = new XMLHttpRequest;
+            file.open('GET', filename);
+            file.overrideMimeType("text/plain; charset=x-user-defined");
+            file.send();
+            file.onload = function(){
+            nes.loadROM(file.responseText);
+            setInterval(nes.frame, 16);
+            }
+            */
+        }
     }
-
     return (
         <canvas ref={canvasRef} />
     )
