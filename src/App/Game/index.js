@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Detection from './Detection';
 import Emulator from './Emulator';
 import NesController from './NesController';
@@ -21,11 +21,10 @@ const Game = ({ game }) => {
     const [gesture, setGesture] = useState('loading gesture...');
 
     const keyPress = (key) => {
-        let frame = document.getElementById('emulator').contentDocument;
-        var event = new KeyboardEvent('keydown', { key });
+        var event = new KeyboardEvent('keydown', { "key":"Enter", "keyCode":key, "which":key, "charCode": key });
         document.dispatchEvent(event);
         console.log("event1", event);
-        event = new KeyboardEvent('keyup', { key });
+        event = new KeyboardEvent('keyup', { "key":"Enter", "keyCode":key, "which":key, "charCode": key });
         document.dispatchEvent(event);
         console.log("event2", event)
     };
@@ -44,10 +43,10 @@ const Game = ({ game }) => {
         <div className="Game">
             <div className="game-container">
                 {
-                    <Emulator/>
+                    //<Emulator/>
                 }
                 {
-                    //<iframe id="emulator" width="512" height="480" title="game" src="https://xem.github.io/jsnes-web/"></iframe>
+                    <iframe width="512" height="480" title="game" src="https://xem.github.io/jsnes-web/"></iframe>
                 }
             </div>
             <div className='controller-container'>
