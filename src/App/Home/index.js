@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Container, Button, Icon, Grid } from '@mui/material';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; 
+import { Button, Icon, Grid, Stack } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 import './index.scss';
 
 const colors = [
@@ -19,7 +20,8 @@ const colors = [
 const gameNames = {
     'Pacman': 'pacman',
     'Space Invaders': 'space-invaders',
-    'Tetris': 'tetris'
+    'Tetris': 'tetris',
+    'Donkey Kong': 'donkey-kong'
 }
 
 const gridStyle = {
@@ -28,64 +30,87 @@ const gridStyle = {
     alignItems: "center"
 }
 
-const createCarouselItem = (name) => (
-    <div key={name}>
-        <img src={`/images/${gameNames[name]}.png`}
-             alt={name}
-        />
-    </div>
-);
-
-const carouselItems = <div>{Object.keys(gameNames).map(createCarouselItem)}</div>;
-
 const Home = () => {
-    const [game, setGame] = useState(carouselItems.props.children[0].key);
+    const [game, setGame] = useState();
+    const [index, setIndex] = useState(1);
+
+    const navigate = useNavigate();
+    const routeGame = (game) => navigate(`/game?rom=${game.toString()}`);
+    const handleKeyPress = (e) => {
+        if (e.key === "Enter") {
+            routeGame(game);
+        }
+    }
+
+    const createCarouselItems = () => {
+        let items = Object.keys(gameNames).map((name) => {
+            return <div className="CarouselItem NoSelect" key={name}>
+                <img src={`/images/${gameNames[name]}.png`}
+                    alt={name}
+                />
+            </div>
+        });
+        if (!game) setGame(items[index].key);
+
+        return items;
+    };
 
     return (
         <Grid
           container
           alignItems="center"
           justifyContent="center"
+          onKeyPress={handleKeyPress}
           sx={{ minHeight: '100%' }}
         >
             <Grid item xs={12} sx={gridStyle}>
                 <Carousel
                     infiniteLoop
                     centerMode
-                    centerSlidePercentage={25}
+                    centerSlidePercentage={30}
                     useKeyboardArrows
                     showStatus={false}
-                    height="200px"
+                    showThumbs={false}
+                    showArrows={false}
+                    selectedItem={index}
 
-                    renderArrowPrev={(onClickHandler, hasPrev, label) =>
-                        <Button className="Arrow"
-                                onClick={onClickHandler}
-                                size="medium"
-                                startIcon={
-                                    <Icon>
-                                        <img alt="Left Arrow" src="/images/left-arrow.png" />
-                                    </Icon>
-                                }>
-                        </Button>
-                    }
+                    // renderArrowPrev={(onClickHandler, hasPrev, label) =>
+                    //     <Button 
+                    //             disableRipple
+                    //             variant="text"
+                    //             onClick={onClickHandler}
+                    //             startIcon={
+                    //                 <Icon className="Icon">
+                    //                     <img alt="Left Arrow" src="/images/left-arrow.png" />
+                    //                 </Icon>
+                    //             }
+                    //             style={{ backgroundColor: 'transparent' }}
+                    //             className="Arrow Left"
+                    //     >
+                    //     </Button>
+                    // }
 
-                    renderArrowNext={(onClickHandler, hasNext, label) =>
-                        <Button className="Arrow"
-                                onClick={onClickHandler}
-                                size="medium"
-                                startIcon={
-                                    <Icon>
-                                        <img alt="Right Arrow" src="/images/right-arrow.png" />
-                                    </Icon>
-                                }>  
-                        </Button>
-                    }
+                    // renderArrowNext={(onClickHandler, hasNext, label) =>
+                    //     <Button 
+                    //             disableRipple
+                    //             variant="text"
+                    //             onClick={onClickHandler}
+                    //             startIcon={
+                    //                 <Icon className="Icon">
+                    //                     <img alt="Right Arrow" src="/images/right-arrow.png" />
+                    //                 </Icon>
+                    //             }
+                    //             style={{ backgroundColor: 'transparent' }}
+                    //             className="Arrow Right"
+                    //     >
+                    //     </Button>
+                    // }
 
                     renderIndicator={(onClickHandler, isSelected, index, label) => {
                         return (isSelected) ? (
-                            <li className="Selected"/>
+                            <li className="SelectedDot"/>
                         ) : (
-                            <li className="NotSelected"
+                            <li className="UnselectedDot"
                                 onClick={onClickHandler}
                                 onKeyDown={onClickHandler}
                                 value={index}
@@ -98,23 +123,32 @@ const Home = () => {
 
                     onChange={(index, item) => {
                         setGame(item.key.substring(2));
+                        setIndex(index);
+                    }}
+
+                    onClickItem={(index, item) => {
+                        setGame(item.key);
+                        setIndex(index);
                     }}
                 >
-                    {carouselItems.props.children}
+                    {createCarouselItems()}
                 </Carousel>
             </Grid>
-            <Grid item xs={12} sx={gridStyle}>
-                <h2 style={{
-                    color: colors[Math.floor(Math.random()*colors.length)]
-                }}>
-                    {game.toUpperCase()}
-                </h2>
-            </Grid>
-            <Grid item xs={12} sx={gridStyle}>
-                <h1>
-                    PRESS ENTER
-                </h1>
-            </Grid>
+            <Stack mt={-8} spacing={2}>
+                <div className="Item">
+                    <h1 className="GameText" style={{
+                        color: colors[Math.floor(Math.random()*colors.length)],
+                        fontSize: "1.5em"
+                    }}>
+                        {game && game.toUpperCase()}
+                    </h1>
+                </div>
+                <div className="Item">
+                    <h1 className="Enter">
+                        PRESS ENTER
+                    </h1>
+                </div>
+            </Stack>
         </Grid>
     );
 }

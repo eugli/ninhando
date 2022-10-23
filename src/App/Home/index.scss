@@ -1,17 +1,94 @@
 @import '../../variables.scss';
 
-.Selected {
-    background: black;
-    width: .5rem;
-    height: .5rem;
-    display: 'inline-block';
-    margin: '0 .5rem';
+.thumbs {
+    padding: 0;
+    margin: 0;
+
 }
 
-.Selected {
-    background: black;
-    width: .5rem;
-    height: .5rem;
+.CarouselItem {
+    border: 0.5rem solid $vanilla;
+    cursor: pointer;
+    
+    img {
+        height: 400px;
+        width: 150px;
+        min-width: 150px;
+    }
+}
+
+.Arrow {
+    z-index: 10;
+    position: absolute !important;
+    top: calc(40%) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.Left {
+    left: 2rem !important;
+}
+
+.Right {
+    right: 2rem !important;
+}
+
+.Icon {
+    font-size: 5rem !important;
+}
+
+li.selected > .CarouselItem {
+    border: 0.5rem solid $copper;
+}
+
+span .material-icons {
+    align-items: center;
+    vertical-align: center;
+    display: flex;
+}
+
+.slide {
+    margin-left: 1rem !important;
+    margin-right: 1rem !important;
+}
+
+.Item {
+    text-align: center;
+}
+
+.control-dots {
+    z-index: 10;
+    justify-content: center;
+}
+
+.SelectedDot {
+    background: $copper;
+    width: 1rem;
+    height: 1rem;
     display: 'inline-block';
-    margin: '0 .5rem';
+    margin: '0 1rem';
+}
+
+.UnselectedDot {
+    background: $tangerine;
+    width: 1rem;
+    height: 1rem;
+    display: 'inline-block';
+    margin: '0 1rem';
+}
+
+.GameText {
+    animation: GameText 2s ease-out infinite;
+  }
+  
+  @keyframes GameText {
+    0% {
+      transform: scale(1, 1);
+    }
+    50% {
+      transform: scale(1.25, 1.25);
+    }
+    100% {
+      transform: scale(1, 1);
+    }
 }

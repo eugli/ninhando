@@ -1,11 +1,17 @@
 import React from 'react';
 import { Grid } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
 import CodeIcon from '@mui/icons-material/Code';
 import './index.scss';
 
 const Header = () => {
+  const navigate = useNavigate(); 
+  const returnHome = () =>{ 
+    navigate("/");
+  }
+
   return (
     <div>
       <div className="PhantomHeader"/>
@@ -20,7 +26,7 @@ const Header = () => {
             padding: '0 1rem'
           }}>
             <Grid item>
-              <h1>UNTITLED</h1>
+              <h1 onClick={returnHome}>UNTITLED</h1>
             </Grid>
           </Grid>
 

@@ -1,10 +1,9 @@
 
 import React, { useState } from 'react';
-import './index.scss';
 import Detection from './Detection';
 import NesController from './NesController';
+import './index.scss';
 //import Emulator from './Emulator';
-
 
 //TODO
 const TETRIS_GESTURE_KEY_MAP = {
