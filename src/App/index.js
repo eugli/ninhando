@@ -4,6 +4,7 @@ import Header from './Header';
 import Footer from './Footer';
 import Game from './Game';
 import Home from './Home';
+import './index.scss';
 
 const App = () => {
   return (

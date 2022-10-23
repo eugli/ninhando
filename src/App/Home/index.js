@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid, Stack } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel';
@@ -34,24 +34,40 @@ const gridStyle = {
     alignItems: "center"
 }
 
-const Home = () => {
+const Home = ({
+    gesture
+}) => {
     const [game, setGame] = useState();
-    const [index, setIndex] = useState(0);
+    const [gameIndex, setGameIndex] = useState(0);
+
     const navigate = useNavigate();
+    const routeGame = (game) => {
+        navigate(`/game?rom=Tetris`)
+    };
 
-    const handleKeyPress = useCallback((e) => {
-        const routeGame = (game) => navigate(`/game?rom=${game.toString()}`);
-
+    const handleKeyPress = (e) => {
         if (e.key === "Enter") {
             routeGame(game);
         } else if (e.keyCode === 37) { // Left Arrow
-            if (index - 1 < 0) setIndex(numGames - 1);
-            setIndex(index - 1);
+            if (gameIndex - 1 < 0) setGameIndex(numGames - 1);
+            else setGameIndex(gameIndex - 1);
         } else if (e.keyCode === 39) { // Right Arrow
-            if (index + 1 >= numGames) setIndex(0);
-            setIndex(index + 1);
+            if (gameIndex + 1 >= numGames) setGameIndex(0);
+            else setGameIndex(gameIndex + 1);
         }
-    }, [game, index, navigate]);
+    };
+    
+    const handleKeyEvent = (gesture) => {
+        if (gesture === "start-game") {
+            routeGame(game);
+        } else if (gesture === "left") {
+            if (gameIndex - 1 < 0) setGameIndex(numGames - 1);
+            else setGameIndex(gameIndex - 1);
+        } else if (gesture === "right") {
+            if (gameIndex + 1 >= numGames) setGameIndex(0);
+            else setGameIndex(gameIndex + 1);
+        }
+    }
 
     const createCarouselItems = () => {
         let items = Object.keys(gameNames).map((name) => {
@@ -61,14 +77,10 @@ const Home = () => {
                 />
             </div>
         });
-        if (!game) setGame(items[index].key);
+        if (!game) setGame(items[gameIndex].key);
 
         return items;
     };
-
-    const handleKeyEvent = ((gesture) => {
-        console.log(gesture);
-    });
 
     useEffect(() => {
         window.addEventListener('keydown', handleKeyPress); 
@@ -76,15 +88,21 @@ const Home = () => {
         return () => {
             window.removeEventListener('keydown', handleKeyPress);
         };
-    }, [index, handleKeyPress]);
+    });
 
     return (
         <>
+            <Detection
+                className="Detection"
+                hidden={true}
+                keyEvent={handleKeyEvent}
+                sampleTime={3000}
+            />   
             <Grid
-            container
-            alignItems="center"
-            justifyContent="center"
-            sx={{ minHeight: '100%' }}
+                container
+                alignItems="center"
+                justifyContent="center"
+                sx={{ minHeight: '100%' }}
             >
                 <Grid item xs={12} sx={gridStyle}>
                     <Carousel
@@ -94,7 +112,7 @@ const Home = () => {
                         showStatus={false}
                         showThumbs={false}
                         showArrows={false}
-                        selectedItem={index}
+                        selectedItem={gameIndex}
 
                         // renderArrowPrev={(onClickHandler, hasPrev, label) =>
                         //     <Button 
@@ -145,12 +163,12 @@ const Home = () => {
 
                         onChange={(index, item) => {
                             setGame(item.key.substring(2));
-                            setIndex(index);
+                            setGameIndex(index);
                         }}
 
                         onClickItem={(index, item) => {
                             setGame(item.key);
-                            setIndex(index);
+                            setGameIndex(index);
                         }}
                     >
                         {createCarouselItems()}
@@ -174,11 +192,7 @@ const Home = () => {
                         </h1>
                     </div>
                 </Stack>
-            </Grid>
-            <Detection
-                className="Detection"
-                hidden={true}
-                keyEvent={handleKeyEvent}/>    
+            </Grid> 
         </>
     );
 }
