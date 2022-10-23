@@ -10,7 +10,7 @@ import { drawHand } from "./utilities";
 
 const Gesture = ({
   keyEvent,
-  hidden=false
+  hidden = false
 }) => {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);

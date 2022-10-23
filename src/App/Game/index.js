@@ -51,7 +51,7 @@ const Game = ({ game }) => {
             </div>
             <div className='controller-container'>
                 <div className="controller">
-                    <h1>Gesture: {gesture}</h1>
+                    <h3>Gesture: {gesture}</h3>
                     <NesController gestureMode={gesture} />
 
                 </div>

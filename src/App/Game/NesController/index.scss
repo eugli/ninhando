@@ -43,6 +43,77 @@ body {
 
 }
 
+.overlay-none {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: rgba(244, 241, 241, 0.1);
+    left: 50;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    z-index: 4;
+    box-shadow: inset 0px -2px 0px 0px rgba(255, 255, 255, 0.1);
+}
+
+.overlay-right {
+    position: absolute;
+    width: 38px;
+    height: 40px;
+    background: rgba(209, 215, 127, 0.2);
+    left: 50;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    z-index: 4;
+    box-shadow: inset 0px -2px 0px 0px rgba(255, 255, 255, 0.1);
+}
+
+.overlay-left {
+    position: absolute;
+    width: 38px;
+    height: 40px;
+    background: rgba(209, 215, 127, 0.2);
+    left: 0;
+    right: 50;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    z-index: 4;
+    box-shadow: inset 0px -2px 0px 0px rgba(255, 255, 255, 0.1);
+}
+
+.overlay-up {
+    position: absolute;
+    width: 38px;
+    height: 28px;
+    background: rgba(209, 215, 127, 0.2);
+    left: 0;
+    right: 0;
+    bottom: 50;
+    top: 0;
+    margin: auto;
+    z-index: 4;
+    box-shadow: inset 0px -2px 0px 0px rgba(255, 255, 255, 0.1);
+}
+
+.overlay-down {
+    position: absolute;
+    width: 38px;
+    height: 28px;
+    background: rgba(209, 215, 127, 0.2);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 50;
+    margin: auto;
+    z-index: 4;
+    box-shadow: inset 0px -2px 0px 0px rgba(255, 255, 255, 0.1);
+}
+
+
 .back-cross {
     position: absolute;
     left: 0;

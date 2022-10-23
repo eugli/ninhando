@@ -1,7 +1,9 @@
 @import './_variables.scss';
 @import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Exo+2&family=Noto+Sans&family=Press+Start+2P&family=Ubuntu:wght@400;500&family=Volkhov&display=swap');
 
-html, body, #root {
+html,
+body,
+#root {
   margin: 0 auto;
   width: 100%;
   height: 100%;
@@ -33,13 +35,24 @@ h1 {
   font-family: "Press Start 2P", "cursive";
 }
 
+h3 {
+  font-size: 0.5em;
+  font-family: "Press Start 2P", "cursive";
+}
+
 .NoSelect {
-  -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 
   -webkit-user-drag: none;
