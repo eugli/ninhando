@@ -23,7 +23,7 @@ const Header = () => {
           sx={{ minHeight: '100%' }}
         >
           <Grid item xs={6} sx={{
-            padding: '0 1rem'
+            padding: '0 2rem'
           }}>
             <Grid item>
               <h1 onClick={returnHome}>UNTITLED</h1>
@@ -33,7 +33,7 @@ const Header = () => {
           <Grid item xs={6}>
             <Grid container sx={{
               justifyContent: 'flex-end',
-              padding: '0 1rem',
+              padding: '0 2rem',
             }}>
               <Grid item>
                 <IconButton>

@@ -10,6 +10,7 @@ import { drawHand } from "./utilities";
 
 const Gesture = ({
   keyEvent,
+  hidden=false
 }) => {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
@@ -17,8 +18,6 @@ const Gesture = ({
   const runHandpose = async () => {
     const net = await handpose.load();
 
-    console.log("Handpose model loaded.");
-    //  Loop and detect hands
     setInterval(() => {
       detect(net);
     }, 10);
@@ -91,6 +90,7 @@ const Gesture = ({
           ref={webcamRef}
           style={{
             borderRadius: "5%",
+            display: hidden ? "none" : "block",
           }}
         />
       </div>
