@@ -2,7 +2,7 @@
 
 .Footer { 
     margin: 0 auto;
-    font-size: medium;
+    font-size: 1.1rem;
     font-weight: bold;
 
     display: flex;
@@ -14,7 +14,7 @@
     width: 100%;
     height: 2rem;
     background-color: $vanilla;
-    color: white;
+    color: $taupe;
 }
 
 .PhantomFooter { 
@@ -25,5 +25,5 @@
 
 .Heart {
     margin: 0 0.25rem;
-    color: red;
+    color: $terracotta;
 }

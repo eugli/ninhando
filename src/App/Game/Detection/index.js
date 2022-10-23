@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 
 import * as handpose from "@tensorflow-models/handpose";
 import Webcam from "react-webcam";
@@ -10,6 +10,7 @@ import { drawHand } from "./utilities";
 
 const Gesture = ({
   keyEvent,
+  hidden=false
 }) => {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
@@ -17,8 +18,6 @@ const Gesture = ({
   const runHandpose = async () => {
     const net = await handpose.load();
 
-    console.log("Handpose model loaded.");
-    //  Loop and detect hands
     setInterval(() => {
       detect(net);
     }, 10);
@@ -88,9 +87,12 @@ const Gesture = ({
         <Webcam
           className="detection"
           mirrored={true}
+          height={180}
+          width={270}
           ref={webcamRef}
           style={{
             borderRadius: "5%",
+            display: hidden ? "none" : "block",
           }}
         />
       </div>

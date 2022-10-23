@@ -1,7 +1,7 @@
 @import '../../_variables.scss';
 
 .Game {
-    display: inline-flex;
+    display: flex;
 }
 
 .game-container {
@@ -9,14 +9,16 @@
 
 }
 
+.controller {
+    width: 320px;
+}
+
 .controller-container {
     margin: 0 auto;
-    flex-direction: column;
 }
 
 .detection-container {
-    margin: 0 auto;
-    vertical-align: middle;
+    position: relative;
 }
 
 .top-layer {

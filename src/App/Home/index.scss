@@ -1,17 +1,119 @@
 @import '../../variables.scss';
 
-.Selected {
-    background: black;
-    width: .5rem;
-    height: .5rem;
-    display: 'inline-block';
-    margin: '0 .5rem';
+.thumbs {
+    padding: 0;
+    margin: 0;
 }
 
-.Selected {
-    background: black;
-    width: .5rem;
-    height: .5rem;
-    display: 'inline-block';
-    margin: '0 .5rem';
+.carousel {
+    margin-top: -0.25rem !important;
+}
+
+.carousel .slide { 
+    display: flex;
+    justify-content: center;
+    margin: auto
+}
+
+.CarouselItem {
+    border: 0.5rem solid $vanilla;
+    cursor: pointer;
+    
+    img {
+        height: 400px;
+        width: 150px;
+        min-width: 150px;
+        margin: 0 auto;
+        justify-content: center;
+        display: flex;
+    }
+}
+
+.Arrow {
+    z-index: 10;
+    position: absolute !important;
+    top: calc(40%) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.Left {
+    left: 2rem !important;
+}
+
+.Right {
+    right: 2rem !important;
+}
+
+.Icon {
+    font-size: 5rem !important;
+}
+
+li.selected > .CarouselItem {
+    border: 0.5rem solid $copper;
+}
+
+span .material-icons {
+    align-items: center;
+    vertical-align: center;
+    display: flex;
+}
+
+.slide {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+}
+
+.Item {
+    text-align: center;
+}
+
+.control-dots {
+    position: relative !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.SelectedDot {
+    background: $copper;
+    width: 0.5rem;
+    height: 0.5rem;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 0.5rem;
+}
+
+.UnselectedDot {
+    background: $lauren;
+    width: 0.5rem;
+    height: 0.5rem;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 0.5rem;
+}
+
+.GameText {
+    animation: GameText 2s ease-out infinite;
+  }
+  
+  @keyframes GameText {
+    0% {
+      transform: scale(1, 1);
+    }
+    50% {
+      transform: scale(1.25, 1.25);
+    }
+    100% {
+      transform: scale(1, 1);
+    }
+}
+
+.Enter {
+    text-decoration: line-through;
+}
+
+.Detection {
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
 }

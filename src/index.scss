@@ -1,14 +1,16 @@
 @import './_variables.scss';
-@import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Exo+2&family=Noto+Sans&family=Ubuntu:wght@400;500&family=Volkhov&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Exo+2&family=Noto+Sans&family=Press+Start+2P&family=Ubuntu:wght@400;500&family=Volkhov&display=swap');
 
 html, body, #root {
-  margin: 0;
+  margin: 0 auto;
   width: 100%;
   height: 100%;
   font-family: -apple-system, BlinkMacSystemFont, 'Ubuntu', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: $papaya;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 #root {
@@ -18,6 +20,7 @@ html, body, #root {
 
 .App {
   flex: auto;
+  margin: 0 auto;
 }
 
 code {
@@ -26,6 +29,21 @@ code {
 }
 
 h1 {
-    font-size: 2em;
-    font-family: "Bungee Inline", "cursive";
+  font-size: 1.5em;
+  font-family: "Press Start 2P", "cursive";
+}
+
+.NoSelect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
 }
