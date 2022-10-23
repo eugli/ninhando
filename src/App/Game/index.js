@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import './index.scss';
 import Detection from './Detection';
+import './index.scss';
 
 const keyEvent = (key) => {
     const event = new KeyboardEvent('keydown', { key });
