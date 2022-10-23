@@ -9,9 +9,8 @@ import { moveUp, moveDown, moveLeft, moveRight, rotateLeft, rotateRight, startGa
 import { drawHand } from "./utilities";
 
 const Gesture = ({
-  setGesture
+  keyEvent,
 }) => {
-  var finalGesture = '';
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
 
@@ -48,7 +47,7 @@ const Gesture = ({
       // Make Detections
       const hand = await net.estimateHands(video, true);
 
-      console.log(hand);
+      //console.log(hand);
 
       if (hand.length > 0) {
         const GE = new fp.GestureEstimator([
@@ -70,9 +69,8 @@ const Gesture = ({
             Math.max.apply(null, confidence)
           );
 
-          finalGesture = gesture.gestures[maxConfidence].name;
-          console.log(finalGesture);
-          setGesture(finalGesture);
+          const finalGesture = gesture.gestures[maxConfidence].name;
+          keyEvent(finalGesture);
 
           // Draw mesh
           const ctx = canvasRef.current.getContext("2d");
