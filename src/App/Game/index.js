@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import './index.scss';
 import Detection from './Detection';
+//import Emulator from './Emulator';
 
 const keyEvent = (key) => {
     const event = new KeyboardEvent('keydown', { key });
@@ -14,15 +15,19 @@ const TETRIS_GESTURE_KEY_MAP = {
     'moveUp': 'ArrowUp',
 }
 
-const Game = () => {
+const Game = ({game}) => {
 
-    const [gesture, setGesture] = useState('waiting for gesture');
+    const [gesture, setGesture] = useState('waiting for gesture');    
 
     return (
         <div className="Game">
             <div className="game-container">
-                <h1>Game</h1>
-                <iframe title="game" src="https://xem.github.io/jsnes-web/"></iframe>
+                {
+                    //<Emulator/>
+                }
+                {
+                    <iframe width="512" height="480" title="game" src="https://xem.github.io/jsnes-web/"></iframe>
+                }
             </div>
             <div className='controller-container'>
                 <div className="controller">
