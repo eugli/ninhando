@@ -1,219 +1,329 @@
-// Variables
-$spacer: 1rem !default;
+@import url(https://fonts.googleapis.com/css?family=Orbitron);
 
-// Reset
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
+html,
 body {
-    background-color: #fff;
+    font-family: monospace;
+    background-color: #4B4E43;
+    height: 70%;
 }
 
-.align {
+.controller {
+    width: 500px;
+    margin: 0 auto;
+    top: 30%;
+}
+
+.base {
+    width: 500px;
+    height: 220px;
+    background-color: #e0ded4;
+    border-radius: 4px;
+    z-index: 1;
+
+}
+
+.front {
+    position: relative;
+    top: 38px;
+    margin: 0 auto;
+    width: 480px;
+    height: 167px;
+    background-color: #464646;
+    background: linear-gradient(to bottom, #3a3e3b 0%, #232624 100%);
+    box-shadow: inset 0px 1px 2px 1px rgba(0, 10, 0, 0.91);
+
+}
+
+.cross {
+    position: absolute;
+    left: 24px;
+    top: 50px;
+    width: 110px;
+    height: 90px;
+
+}
+
+.back-cross {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    width: 105px;
+    height: 40px;
+    background-color: #e0ded4;
+    z-index: 1;
+    border: 1px black solid;
+}
+
+.back-cross .vert {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    width: 105px;
+    height: 40px;
+    background-color: #e0ded4;
+    z-index: 1;
+    border-radius: 4px;
+    transform: rotate(90deg);
+}
+
+
+.horizontal {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    width: 100px;
+    height: 35px;
+    background-color: #252725;
+    z-index: 2;
+    border-radius: 1px;
+
+}
+
+.vertical {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    width: 100px;
+    height: 35px;
+    background-color: #252725;
+    z-index: 2;
+    border-radius: 1px;
+    transform: rotate(90deg);
+    box-shadow: inset 3px 0px 0px 0px rgba(255, 255, 255, 0.61);
+
+}
+
+.arrowlf {
+    right: 5px;
+    top: 6px;
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    border-left: 12px solid black;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    opacity: 0.3;
+    box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.61);
+
+}
+
+.arrowlf:before {
+    content: '';
+    width: 10px;
+    height: 13px;
+    background-color: black;
+    position: absolute;
+    left: -20px;
+    top: -6px;
+
+}
+
+.arrowrh:before {
+    content: '';
+    width: 10px;
+    height: 13px;
+    background-color: redblack;
+    position: absolute;
+    left: 10px;
+    top: -6px;
+}
+
+.arrowrh {
+    left: 5px;
+    top: 6px;
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    border-right: 12px solid black;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    opacity: 0.3;
+    box-shadow: inset 0px 7px 1px 2px rgba(255, 255, 255, 0.91);
+}
+
+.arrowrh:before {
+    content: '';
+    width: 10px;
+    height: 13px;
+    background-color: black;
+    position: absolute;
+    left: 10px;
+    top: -6px;
+
+}
+
+.circle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(180deg, rgb(22, 22, 22) 30%, rgb(58, 58, 58) 100%);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+    z-index: 4;
+    border-radius: 50%;
+    box-shadow: inset 0px -2px 0px 0px rgba(255, 255, 255, 0.1);
+}
+
+.buttons-a-b {
+    position: absolute;
+    right: 26px;
+    top: 80px;
+    height: 50px;
+}
+
+.btn-border {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    background-color: #EDECE7;
+    float: left;
+    margin: 6px;
+}
+
+.btn-round {
+    position: absolute;
     top: 0;
     left: 0;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(to bottom, #DF2015 0%, #f84936 100%);
+    border-radius: 50%;
+    float: left;
+    border: 1px rgba(0, 0, 0, 0.51) solid;
+    box-shadow: inset 0px 1px 2px 0px #FBFBFB, 0px 1px 1px 0px rgba(0, 0, 0, 0.71);
 }
 
-.joystick {
-    min-width: 500px;
-    height: 220px;
-    background-color: #c9c6b7;
+.btn-round-a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    float: left;
+    border: 1px rgba(0, 0, 0, 0.51) solid;
+    box-shadow: inset 0px 1px 2px 0px #FBFBFB, 0px 1px 1px 0px rgba(0, 0, 0, 0.71);
+    background: linear-gradient(to bottom, #fff 0%, #f84936 100%);
+}
+
+.btn-round:active {
+    top: 1px;
+    border: 1px rgba(0, 0, 0, 0.5) solid;
+    box-shadow: inset 0px 0px 1px 0px #FBFBFB, 0px 1px 1px 0px rgba(0, 0, 0, 0.21);
+}
+
+.buttons-select {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 90px;
+    margin: auto;
+    width: 142px;
+    height: 40px;
+    background-color: #e0ded4;
+    border-radius: 6px;
+    border: 4px solid #e0ded4;
+    box-shadow: inset 0px 1px 3px 4px rgba(50, 50, 50, 0.3);
+    z-index: 3;
+}
+
+.btn-central {
+    position: relative;
+    top: 3px;
+    width: 42px;
+    height: 18px;
+    background-color: #464646;
     border-radius: 10px;
-    padding: ($spacer * 2) $spacer $spacer $spacer;
+    border: 1px solid #272723;
+    margin: 9px 13px;
+    float: left;
+    box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.51);
+}
 
-    &__body {
-        border-radius: 10px;
-        height: 100%;
-        width: 100%;
-        display: block;
-        background-color: #3a4055;
-        display: flex;
-        flex-flow: row;
-    }
+.btn-central-a {
+    position: relative;
+    top: 3px;
+    width: 42px;
+    height: 18px;
+    background-color: #c4c0c0;
+    ;
+    border-radius: 10px;
+    border: 1px solid #272723;
+    margin: 9px 13px;
+    float: left;
+    box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.51);
+}
 
-    &__col {
-        margin: $spacer;
-        flex: 1;
-    }
+.btn-central:active {
+    box-shadow: inset 0px 0px 0px 0px rgba(255, 255, 255, 0.51);
+}
 
-    // Arrows
-    &-arrows {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
+.decoration-central div {
+    position: relative;
+    display: block;
+    left: 0;
+    right: 0;
+    margin: 7px auto;
+    top: 0;
+    width: 150px;
+    height: 28px;
+    background-color: #7b836c;
+    border-radius: 10px;
+    opacity: 0.8;
+    z-index: 2;
+}
 
-        &__arrow {
-            top: 50%;
-            left: 0;
-            right: 0;
-            transform: translateY(-50%);
-            margin: 0 auto;
-            width: 100px;
-            height: 38px;
-            //background-color: #202636;
-            position: absolute;
-            border: 4px solid #bab4aa;
-            border-radius: 5px;
+.stickers {
+    font-family: 'Orbitron', sans-serif;
+    color: #DF2015;
+    position: absolute;
+    z-index: 10;
+}
 
-            &:first-child {
-                z-index: 99999;
-                background: #3a4055;
-                /* Old browsers */
-                background: -moz-linear-gradient(top, #3a4055 10%, #202636 10%, #202636 47%, #202636 87%, #080a13 87%);
-                /* FF3.6-15 */
-                background: -webkit-linear-gradient(top, #3a4055 10%, #202636 10%, #202636 47%, #202636 87%, #080a13 87%);
-                /* Chrome10-25,Safari5.1-6 */
-                background: linear-gradient(to bottom, #3a4055 10%, #202636 10%, #202636 47%, #202636 87%, #080a13 87%);
-                /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3a4055', endColorstr='#080a13', GradientType=0);
+.st-b {
+    font-weight: bold;
+    position: absolute;
+    left: 374px;
+    top: 140px;
+}
 
-                /* IE6-9 */
-                &:before {
-                    z-index: 9999999;
-                    content: '';
-                    height: 38px;
-                    width: 30px;
-                    display: block;
-                    text-align: center;
-                    top: 50%;
-                    left: 0;
-                    transform: translateY(-50%);
-                    right: 0;
-                    bottom: 50%;
-                    margin: 0 auto;
-                    position: absolute;
-                    background-color: #202636;
-                }
-            }
+.st-a {
+    font-weight: bold;
+    position: absolute;
+    left: 434px;
+    top: 140px;
+}
 
-            &:last-child {
-                transform: translateY(-50%) rotate(90deg);
-                /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#3a4055+1,202636+1,202636+49,202636+99,080a13+99 */
-                background: #3a4055;
-                /* Old browsers */
-                background: -moz-linear-gradient(left, #fff 3px, #202636 3%, #202636 47%, #202636 9969%, #080a13 96);
-                /* FF3.6-15 */
-                background: -webkit-linear-gradient(left, #3a4055 3%, #202636 3%, #202636 47%, #202636 96%, #080a13 96%);
-                /* Chrome10-25,Safari5.1-6 */
-                background: linear-gradient(to right, #3a4055 3%, #202636 3%, #202636 47%, #202636 96%, #080a13 96%);
-                /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3a4055', endColorstr='#080a13', GradientType=1);
-                /* IE6-9 */
-            }
-        }
+.st-select {
+    position: absolute;
+    left: 174px;
+    top: 70px;
+}
 
-        &__center {
-            border-radius: 100%;
-            z-index: 99999;
-            height: 20px;
-            width: 20px;
-            display: block;
-            background-color: #171c29;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            position: absolute;
-            box-shadow: 0 5px 0 0 #070a13 inset;
-
-            &:before {
-                content: '';
-                height: 7px;
-                width: 12px;
-                display: block;
-                background-color: #3a4055;
-                position: absolute;
-                bottom: 2px;
-                left: 0;
-                right: 0;
-                border-radius: 50%;
-                margin: 0 auto;
-            }
-        }
-    }
-
-    // Options
-    &-options {
-        margin: 0;
-        flex-flow: column;
-        justify-content: space-between;
-        display: flex;
-
-        &__bar {
-            border-radius: 5px;
-            height: 25px;
-            width: 100%;
-            background-color: #91948a;
-
-            &:first-child {
-                border-radius: 0 0 5px 5px;
-            }
-
-            &:last-child {
-                border-radius: 5px 5px 0 0;
-            }
-
-            &--large {
-                border: 5px solid #c9c6b7;
-                border-radius: 5px;
-                height: 45px;
-                width: 100%;
-                background-color: #c9c6b7;
-            }
-        }
-
-        &__inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            height: 100%;
-            width: 100%;
-            padding: 6px;
-            border-radius: 5px;
-            box-shadow: 0 -3px 0 0 #91948a, 0 -5px 0 0 rgba(#fff, .4) inset;
-        }
-
-        &__option {
-            height: 13px;
-            border-radius: 15px;
-            background-color: #202636;
-            width: 35px;
-            box-shadow: 0px -3px 0 0 darken(#202636, 30%) inset;
-        }
-    }
-
-    // Buttons
-    &__buttons {
-        align-items: flex-end;
-        justify-content: space-between;
-        display: flex;
-    }
-
-    &-button {
-        border-radius: 5px;
-        height: 55px;
-        width: 55px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #c9c6b7;
-
-        &__input {
-            border-radius: 100%;
-            height: 75%;
-            width: 75%;
-            background-color: #f9372b;
-            border: 1px solid #f9372b;
-            box-shadow: 0px -3px 0 0 lighten(#f9372b, 30%), 0px -3px 0 0 rgba(#fff, .4) inset;
-        }
-    }
+.st-start {
+    position: absolute;
+    left: 250px;
+    top: 70px;
 }

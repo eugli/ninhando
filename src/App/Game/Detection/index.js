@@ -90,6 +90,8 @@ const Gesture = ({
         <Webcam
           className="detection"
           mirrored={true}
+          height={180}
+          width={270}
           ref={webcamRef}
           style={{
             borderRadius: "5%",
