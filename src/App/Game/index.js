@@ -1,21 +1,22 @@
 
 import React, { useState } from 'react';
 import Detection from './Detection';
+import NesController from './NesController';
 import './index.scss';
 //import Emulator from './Emulator';
 
 //TODO
 const TETRIS_GESTURE_KEY_MAP = {
-    'down': 'ArrowDown',
-    'up': 'ArrowUp',
-    'right': 'ArrowRight',
-    'left': 'ArrowLeft',
-    'rotate-left': 'x',
-    'rotate-right': 'c',
-    'start-game': 'Enter'
+    'down': 40,
+    'up': 38,
+    'right': 39,
+    'left': 37,
+    'rotate-left': 88,
+    'rotate-right': 67,
+    'start-game': 13
 }
 
-const Game = ({game}) => {
+const Game = ({ game }) => {
     const [gesture, setGesture] = useState('loading gesture...');
 
     const keyPress = (key) => {
@@ -27,7 +28,7 @@ const Game = ({game}) => {
         document.dispatchEvent(event);
         console.log("event2", event)
     };
-    
+
     const keyEvent = (gesture) => {
         setGesture(gesture);
         keyPress(TETRIS_GESTURE_KEY_MAP[gesture]);
@@ -36,7 +37,7 @@ const Game = ({game}) => {
             keyPress(TETRIS_GESTURE_KEY_MAP[gesture]);
         }
     }
-    
+
 
     return (
         <div className="Game">
@@ -51,6 +52,8 @@ const Game = ({game}) => {
             <div className='controller-container'>
                 <div className="controller">
                     <h1>Gesture: {gesture}</h1>
+                    <NesController gestureMode={gesture} />
+
                 </div>
                 <Detection
                     keyEvent={keyEvent}
