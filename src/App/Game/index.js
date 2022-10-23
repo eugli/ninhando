@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './index.scss';
 import Detection from './Detection';
 import NesController from './NesController';
@@ -11,12 +11,16 @@ const keyEvent = (key) => {
 
 //TODO
 const TETRIS_GESTURE_KEY_MAP = {
-    'moveDown': 'ArrowDown',
-    'moveUp': 'ArrowUp',
-}
+    'moveDown': '',
+    'moveUp': 'w',
+    'moveLeft': 'a',
+    "moveRight": 'd',
+    "rotateLeft": 'A',
+    "rotateright": "B",
+};
 
 const Game = () => {
-
+    const ref = useRef();
     const [gesture, setGesture] = useState('waiting for gesture');
 
     return (
@@ -28,7 +32,8 @@ const Game = () => {
             <div className='controller-container'>
                 <div className="controller">
                     <h1>Gesture: {gesture}</h1>
-                    <NesController />
+                    <NesController gestureMode={gesture} />
+
                 </div>
                 <Detection
                     setGesture={setGesture}

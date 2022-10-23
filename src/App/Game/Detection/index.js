@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 
 import * as handpose from "@tensorflow-models/handpose";
 import Webcam from "react-webcam";
