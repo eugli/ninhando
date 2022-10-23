@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import './index.scss';
 import Detection from './Detection';
+import NesController from './NesController';
 
 const keyEvent = (key) => {
     const event = new KeyboardEvent('keydown', { key });
@@ -26,6 +27,7 @@ const Game = () => {
             <div className='controller-container'>
                 <div className="controller">
                     <h1>Gesture: {gesture}</h1>
+                    <NesController />
                 </div>
                 <Detection
                     setGesture={setGesture}
