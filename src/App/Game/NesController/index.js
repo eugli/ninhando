@@ -25,10 +25,25 @@ function NesController({ gestureMode }) {
                     </div>
                     <div class="cross">
                         <div class="circle"></div>
+                        {
+                            gestureMode === "right" && <div class="overlay-right">
+                            </div>
+                        } {
+                            gestureMode === "left" && <div class="overlay-left">
+                            </div>
+                        } {
+                            gestureMode === "up" && <div class="overlay-up">
+                            </div>
+                        } {
+                            gestureMode === "down" && <div class="overlay-down">
+                            </div>
+                        }
+
                         <div class="horizontal">
                             <div class="arrowlf"></div>
                             <div class="arrowrh"></div>
                         </div>
+
                         <div class="vertical">
                             {
                                 gestureMode === "left" && <div class="arrowrh-l"></div>
