@@ -10,8 +10,8 @@ const Emulator = () => {
 
     useEffect(() => {
         console.log("Emulator");
-        canvasRef.current.width = 256;
-        canvasRef.current.height = 240;
+        canvasRef.current.width = 512;
+        canvasRef.current.height = 480;
         var ctx = canvasRef.current.getContext('2d', { willReadFrequently: true });
         var imageData = ctx.getImageData(0, 0, 256, 240);
         var frameBuffer = new ArrayBuffer(imageData.data.length);
@@ -65,6 +65,16 @@ const Emulator = () => {
                     }
                     imageData.data.set(frameBuffer8);
                     ctx.putImageData(imageData, 0, 0);
+                       
+                    // var id = ctx.getImageData(0, 0, 256, 240);
+                    // var newCanvas = new document.createElement('canvas');
+                    // newCanvas.width = 256;
+                    // newCanvas.height = 240;
+                        
+                    // newCanvas.getContext("2d").putImageData(id, 0, 0);
+                        
+                    // ctx.scale(1.5, 1.5);
+                    // ctx.drawImage(newCanvas, 0, 0);
                 },
 
                 // Add new audio samples to the Audio buffers
@@ -86,23 +96,26 @@ const Emulator = () => {
 
             // Controller #1 keys listeners
             onkeydown = onkeyup = e => {
+                console.log("keylistened", e);
                 nes[e.type === "keyup" ? "buttonUp" : "buttonDown"](
                     1,
                     jsnes.Controller["BUTTON_" +
-                    {
-                        37: "LEFT",
-                        38: "UP",
-                        39: "RIGHT",
-                        40: "DOWN",
-                        88: "A", // X
-                        67: "B", // C
-                        27: "SELECT",
-                        13: "START"
-                    }
+                        {
+                            37: "LEFT",
+                            38: "UP",
+                            39: "RIGHT",
+                            40: "DOWN",
+                            88: "A", // X
+                            67: "B", // C
+                            27: "SELECT",
+                            13: "START"
+                        }[e.keyCode]
                     ]
                 )
             }
 
+            document.addEventListener("keydown", onkeydown);
+            document.addEventListener("keyup", onkeyup);
 
             // Or: load ROM from disk
 
@@ -113,7 +126,7 @@ const Emulator = () => {
 
 
     return (
-        <canvas ref={canvasRef} width="512" height="480" style={{ zIndex: 10 }} />
+        <canvas ref={canvasRef}/>
     )
 }
 
