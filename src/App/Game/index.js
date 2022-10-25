@@ -21,12 +21,31 @@ const Game = ({ game }) => {
     const [gesture, setGesture] = useState('loading gesture...');
 
     const keyPress = (key) => {
-        var event = new KeyboardEvent('keydown', { "key":"Enter", "keyCode":key, "which":key, "charCode": key });
-        document.dispatchEvent(event);
+        // const frame = document.getElementById("emulatorIframe").contentWindow;
+        // console.log("frame is", frame.contentWindow);
+        // var event = new KeyboardEvent('keydown', {"keyCode":key, /* "bubbles":true,*/ "view":frame });
+        // document.body.dispatchEvent(event);
+        // console.log("event1", event);
+        // event = new KeyboardEvent('keyup', {"keyCode":key, /*"bubbles":true,*/ "view":frame });
+        // document.body.dispatchEvent(event);
+        // console.log("event2", event)
+
+        var frame = document.getElementById("emulatorIframe");
+        console.log("frame", frame);
+        console.log("frame contentWindow", frame.contentWindow);
+        var event = new KeyboardEvent('keydown', {"keyCode":key, "bubbles":true, /*"isTrusted":true, "view":frame.contentWindow*/ });
+        frame.contentWindow.dispatchEvent(event);
         console.log("event1", event);
-        event = new KeyboardEvent('keyup', { "key":"Enter", "keyCode":key, "which":key, "charCode": key });
-        document.dispatchEvent(event);
+        event = new KeyboardEvent('keyup', {"keyCode":key, "bubbles":true,/* "isTrusted":true,  "view":frame.contentWindow*/});
+        frame.contentWindow.dispatchEvent(event);
         console.log("event2", event)
+
+        // var event = new KeyboardEvent('keydown', { "key":"Enter", "keyCode":key, "bubbles":true });
+        // window.dispatchEvent(event);
+        // console.log("event1", event);
+        // event = new KeyboardEvent('keyup', { "key":"Enter", "keyCode":key, "bubbles":true });
+        // window.dispatchEvent(event);
+        // console.log("event2", event);
     };
 
     const keyEvent = (gesture) => {
@@ -42,11 +61,11 @@ const Game = ({ game }) => {
     return (
         <div className="Game">
             <div className="game-container">
-                {
+                {/* {
                     <Emulator/>
-                }
+                } */}
                 {
-                    //<iframe width="512" height="480" title="game" src="https://xem.github.io/jsnes-web/"></iframe>
+                    <iframe id="emulatorIframe" width="512" height="480" title="game" src="emulator_original.html"></iframe>
                 }
             </div>
             <div className='controller-container'>

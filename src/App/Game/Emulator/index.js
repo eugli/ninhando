@@ -18,32 +18,6 @@ const Emulator = () => {
         var frameBuffer8 = new Uint8ClampedArray(frameBuffer);
         var frameBuffer32 = new Uint32Array(frameBuffer);
 
-        // AudioContext + audio buffers + samples lists
-        // =============================================
-
-        // var audio = new AudioContext();
-        // var audioprocessor = audio.createScriptProcessor(512, 0, 2);
-        // audioprocessor.connect(audio.destination);
-
-        // // When the Audio processor requests new samples to play
-        // audioprocessor.onaudioprocess = audioEvent => {
-
-        //     // Ensure that we've buffered enough samples
-        //     if (leftSamples.length > currentSample + 512) {
-        //         for (var i = 0; i < 512; i++) {
-
-        //             // Output (play) the buffers
-        //             audioEvent.outputBuffer.getChannelData(0)[i] = leftSamples[currentSample];
-        //             audioEvent.outputBuffer.getChannelData(1)[i] = rightSamples[currentSample];
-        //             currentSample++;
-        //         }
-        //     }
-        // }
-        // var leftSamples = [];
-        // var rightSamples = [];
-        // var currentSample = 0;
-
-
         // Load ROM + Start emulator
         // =========================
         var filename = "Tetris.nes";
@@ -67,15 +41,6 @@ const Emulator = () => {
                     ctx.putImageData(imageData, 0, 0);
                 },
 
-                // Add new audio samples to the Audio buffers
-                // onAudioSample: function (left, right) {
-                //     //console.log(left, right);
-                //     leftSamples.push(left);
-                //     rightSamples.push(right);
-                // },
-
-                // Pass the browser's sample rate to the emulator
-                // sampleRate: 44100,
             });
 
             // Send ROM to emulator
@@ -86,7 +51,10 @@ const Emulator = () => {
 
             // Controller #1 keys listeners
             onkeydown = onkeyup = e => {
-                nes[e.type === "keyup" ? "buttonUp" : "buttonDown"](
+                console.log("key!!!", e)
+                const etype = e.type;
+                const eCode = e.keyCode;
+                nes[etype === "keyup" ? "buttonUp" : "buttonDown"](
                     1,
                     jsnes.Controller["BUTTON_" +
                     {
@@ -98,15 +66,10 @@ const Emulator = () => {
                         67: "B", // C
                         27: "SELECT",
                         13: "START"
-                    }
+                    }[eCode]
                     ]
                 )
             }
-
-
-            // Or: load ROM from disk
-
-
         }
     }, []);
 
