@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Detection from './Detection';
 import Emulator from './Emulator';
 import NesController from './NesController';
+import Controller from 'jsnes/src/controller';
 import './index.scss';
 //import Emulator from './Emulator';
 
@@ -19,14 +20,17 @@ const TETRIS_GESTURE_KEY_MAP = {
 
 const Game = ({ game }) => {
     const [gesture, setGesture] = useState('loading gesture...');
+    const [nes, setNes] = useState(null);
 
     const keyPress = (key) => {
-        var event = new KeyboardEvent('keydown', { "key":"Enter", "keyCode":key, "which":key, "charCode": key });
-        document.dispatchEvent(event);
-        console.log("event1", event);
-        event = new KeyboardEvent('keyup', { "key":"Enter", "keyCode":key, "which":key, "charCode": key });
-        document.dispatchEvent(event);
-        console.log("event2", event)
+        // console.log('controller pressed');
+        // nes.Controller.buttonDown(1, Controller["BUTTON_START"]);
+        console.log("dispatching keydown", key);
+        document.dispatchEvent(new KeyboardEvent('keydown', { "key":"Enter", keyCode:key, "which":key, "charCode": key, bubbles:true }));
+        console.log("dispatching keyup", key)
+        document.dispatchEvent(new KeyboardEvent('keyup', { "key":"Enter", keyCode:key, "which":key, "charCode": key, bubbles:true }));
+        //document.dispatchEvent(new CustomEvent('k', {detail:key}))
+        //document.dispatchEvent(new CustomEvent('notk', {detail:key}))
     };
 
     const keyEvent = (gesture) => {
@@ -43,7 +47,10 @@ const Game = ({ game }) => {
         <div className="Game">
             <div className="game-container">
                 {
-                    <Emulator/>
+                    <Emulator
+                        nes={nes}
+                        setNes={setNes}
+                    />
                 }
                 {
                     //<iframe width="512" height="480" title="game" src="https://xem.github.io/jsnes-web/"></iframe>

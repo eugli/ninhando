@@ -1,15 +1,18 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import * as jsnes from 'jsnes';
 
 // Canvas + framebuffer
 // ====================
 
-const Emulator = () => {
+const Emulator = ({
+    nes
+}) => {
+
 
     const canvasRef = useRef(null);
 
     useEffect(() => {
-        console.log("Emulator");
+        console.log("Emulator")
         canvasRef.current.width = 512;
         canvasRef.current.height = 480;
         var ctx = canvasRef.current.getContext('2d', { willReadFrequently: true });
@@ -95,8 +98,8 @@ const Emulator = () => {
             setInterval(nes.frame, 16);
 
             // Controller #1 keys listeners
-            onkeydown = onkeyup = e => {
-                console.log("keylistened", e);
+            const keyEvent = (e) => {
+                console.log(e.type + " listened", e.keyCode);
                 nes[e.type === "keyup" ? "buttonUp" : "buttonDown"](
                     1,
                     jsnes.Controller["BUTTON_" +
@@ -114,8 +117,10 @@ const Emulator = () => {
                 )
             }
 
-            document.addEventListener("keydown", onkeydown);
-            document.addEventListener("keyup", onkeyup);
+            document.addEventListener("keydown", keyEvent);
+            document.addEventListener("keyup", keyEvent);
+            //document.addEventListener("k", keyEvent);
+            //document.addEventListener("notk", keyEvent);
 
             // Or: load ROM from disk
 
