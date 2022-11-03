@@ -2,7 +2,7 @@ import * as React from 'react';
 import "./index.scss"
 
 function NesController({ gestureMode }) {
-    console.log("gesture is ", gestureMode);
+    //console.log("gesture is ", gestureMode);
     return (
         <div class="controller">
             <div class="base">

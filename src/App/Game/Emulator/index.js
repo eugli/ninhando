@@ -5,7 +5,7 @@ import * as jsnes from 'jsnes';
 // ====================
 
 const Emulator = ({
-    nes
+    
 }) => {
 
 
@@ -68,7 +68,7 @@ const Emulator = ({
                     }
                     imageData.data.set(frameBuffer8);
                     ctx.putImageData(imageData, 0, 0);
-                       
+                    
                     // var id = ctx.getImageData(0, 0, 256, 240);
                     // var newCanvas = new document.createElement('canvas');
                     // newCanvas.width = 256;
@@ -90,6 +90,8 @@ const Emulator = ({
                 // Pass the browser's sample rate to the emulator
                 // sampleRate: 44100,
             });
+
+            
 
             // Send ROM to emulator
             nes.loadROM(file.responseText);
@@ -123,8 +125,6 @@ const Emulator = ({
             //document.addEventListener("notk", keyEvent);
 
             // Or: load ROM from disk
-
-
         }
     }, []);
 

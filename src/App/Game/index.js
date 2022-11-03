@@ -20,37 +20,48 @@ const TETRIS_GESTURE_KEY_MAP = {
 
 const Game = ({ game }) => {
     const [gesture, setGesture] = useState('loading gesture...');
-    const [nes, setNes] = useState(null);
 
-    const keyPress = (key) => {
-        // console.log('controller pressed');
-        // nes.Controller.buttonDown(1, Controller["BUTTON_START"]);
-        console.log("dispatching keydown", key);
-        document.dispatchEvent(new KeyboardEvent('keydown', { "key":"Enter", keyCode:key, "which":key, "charCode": key, bubbles:true }));
-        console.log("dispatching keyup", key)
-        document.dispatchEvent(new KeyboardEvent('keyup', { "key":"Enter", keyCode:key, "which":key, "charCode": key, bubbles:true }));
+    const keyPress = (key, isKeyDown) => {
+        isKeyDown?console.log("dispatching keydown", key):console.log("dispatching keyup", key)
+        setGesture("loading...")
+        if (isKeyDown) {
+            document.dispatchEvent(new KeyboardEvent('keydown', { "key":"Enter", "keyCode":key, "which":key, "charCode": key, bubbles:true }))
+            return setTimeout(() => {
+                keyPress(key, false);
+            }, 100);
+        } else {
+            document.dispatchEvent(new KeyboardEvent('keyup', { "key":"Enter", "keyCode":key, "which":key, "charCode": key, bubbles:true }));
+        }
         //document.dispatchEvent(new CustomEvent('k', {detail:key}))
         //document.dispatchEvent(new CustomEvent('notk', {detail:key}))
     };
 
-    const keyEvent = (gesture) => {
-        setGesture(gesture);
-        keyPress(TETRIS_GESTURE_KEY_MAP[gesture]);
-        console.log("pressed", gesture);
-        if (game === 'tetris') {
-            keyPress(TETRIS_GESTURE_KEY_MAP[gesture]);
+    // const keyEvent = (gesture) => {
+    //     setGesture(gesture);
+    //     keyPress(TETRIS_GESTURE_KEY_MAP[gesture]);
+    //     console.log("pressed", gesture);
+    //     if (game === 'tetris') {
+    //         keyPress(TETRIS_GESTURE_KEY_MAP[gesture]);
+    //     }
+    // }
+
+    useEffect(()=>{
+        const keyEvent = (gesture) => {
+            console.log("pressed", gesture);
+            // if (game === 'tetris') {
+            //     keyPress(TETRIS_GESTURE_KEY_MAP[gesture], true);
+            // }
+            return keyPress(TETRIS_GESTURE_KEY_MAP[gesture], true);
         }
-    }
+        keyEvent(gesture);
+    }, [gesture])
 
 
     return (
         <div className="Game">
             <div className="game-container">
                 {
-                    <Emulator
-                        nes={nes}
-                        setNes={setNes}
-                    />
+                    <Emulator/>
                 }
                 {
                     //<iframe width="512" height="480" title="game" src="https://xem.github.io/jsnes-web/"></iframe>
@@ -63,7 +74,8 @@ const Game = ({ game }) => {
 
                 </div>
                 <Detection
-                    keyEvent={keyEvent}
+                    setGesture={setGesture}
+                    keyEvent={setGesture}
                 />
             </div>
         </div>

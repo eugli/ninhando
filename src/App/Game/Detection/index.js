@@ -26,7 +26,7 @@ const Gesture = ({
 
   const detect = async (net) => {
     // Check data is available
-    console.log("running pose model...");
+    //console.log("running pose model...");
 
     if (
       typeof webcamRef.current !== "undefined" &&
