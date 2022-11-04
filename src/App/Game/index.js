@@ -18,7 +18,11 @@ const TETRIS_GESTURE_KEY_MAP = {
     'start-game': 13
 }
 
-const Game = ({ game }) => {
+const Game = ({ 
+    game 
+}) => {
+    game = "tetris";
+
     const [gesture, setGesture] = useState('loading gesture...');
 
     const keyPress = (key, isKeyDown) => {
@@ -61,7 +65,9 @@ const Game = ({ game }) => {
         <div className="Game">
             <div className="game-container">
                 {
-                    <Emulator/>
+                    <Emulator
+                        romPath={`/roms/${game}.nes`}
+                    />
                 }
                 {
                     //<iframe width="512" height="480" title="game" src="https://xem.github.io/jsnes-web/"></iframe>
