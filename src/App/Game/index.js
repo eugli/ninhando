@@ -21,7 +21,7 @@ const TETRIS_GESTURE_KEY_MAP = {
 const Game = ({ 
     game 
 }) => {
-    game = "tetris";
+    game = "Pac-Man";
 
     const [gesture, setGesture] = useState('loading gesture...');
 

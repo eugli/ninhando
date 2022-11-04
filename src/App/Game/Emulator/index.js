@@ -81,7 +81,7 @@ const Emulator = ({
 
                 // Add new audio samples to the Audio buffers
                 // onAudioSample: function (left, right) {
-                //     //console.log(left, right);
+                //     //console.log(left, right);  
                 //     leftSamples.push(left);
                 //     rightSamples.push(right);
                 // },
