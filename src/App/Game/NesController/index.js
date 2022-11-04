@@ -4,17 +4,17 @@ import "./index.scss"
 function NesController({ gestureMode }) {
     //console.log("gesture is ", gestureMode);
     return (
-        <div class="controller">
-            <div class="base">
-                <div class="front">
-                    <div class="decoration">
-                        <div class="stickers">
-                            <div class="st-a">A</div>
-                            <div class="st-b">B</div>
-                            <div class="st-select">SELECT</div>
-                            <div class="st-start">START</div>
+        <div className="controller">
+            <div className="base">
+                <div className="front">
+                    <div className="decoration">
+                        <div className="stickers">
+                            <div className="st-a">A</div>
+                            <div className="st-b">B</div>
+                            <div className="st-select">SELECT</div>
+                            <div className="st-start">START</div>
                         </div>
-                        <div class="decoration-central">
+                        <div className="decoration-central">
                             <div></div>
                             <div></div>
                             <div></div>
@@ -23,65 +23,65 @@ function NesController({ gestureMode }) {
                         </div>
 
                     </div>
-                    <div class="cross">
-                        <div class="circle"></div>
+                    <div className="cross">
+                        <div className="circle"></div>
                         {
-                            gestureMode === "right" && <div class="overlay-right">
+                            gestureMode === "right" && <div className="overlay-right">
                             </div>
                         } {
-                            gestureMode === "left" && <div class="overlay-left">
+                            gestureMode === "left" && <div className="overlay-left">
                             </div>
                         } {
-                            gestureMode === "up" && <div class="overlay-up">
+                            gestureMode === "up" && <div className="overlay-up">
                             </div>
                         } {
-                            gestureMode === "down" && <div class="overlay-down">
+                            gestureMode === "down" && <div className="overlay-down">
                             </div>
                         }
 
-                        <div class="horizontal">
-                            <div class="arrowlf"></div>
-                            <div class="arrowrh"></div>
+                        <div className="horizontal">
+                            <div className="arrowlf"></div>
+                            <div className="arrowrh"></div>
                         </div>
 
-                        <div class="vertical">
+                        <div className="vertical">
                             {
-                                gestureMode === "left" && <div class="arrowrh-l"></div>
+                                gestureMode === "left" && <div className="arrowrh-l"></div>
                             }
                             {
-                                gestureMode !== "left" && <div class="arrowrh"></div>
+                                gestureMode !== "left" && <div className="arrowrh"></div>
                             }
-                            <div class="arrowlf"></div>
-                            <div class="arrowrh"></div>
+                            <div className="arrowlf"></div>
+                            <div className="arrowrh"></div>
                         </div>
-                        <div class="back-cross">
-                            <div class="horiz"></div>
-                            <div class="vert"></div>
+                        <div className="back-cross">
+                            <div className="horiz"></div>
+                            <div className="vert"></div>
                         </div>
                     </div>
-                    <div class="buttons-a-b">
-                        <div class="btn-border">
+                    <div className="buttons-a-b">
+                        <div className="btn-border">
                             {
-                                gestureMode === 'rotate-right' && <div class="btn-round a"></div>
+                                gestureMode === 'rotate-right' && <div className="btn-round a"></div>
                             }{
-                                gestureMode !== 'rotate-right' && <div class="btn-round-a a"></div>
+                                gestureMode !== 'rotate-right' && <div className="btn-round-a a"></div>
                             }
                         </div>
 
-                        <div class="btn-border">
+                        <div className="btn-border">
                             {
-                                gestureMode === 'rotate-left' && <div class="btn-round b"></div>
+                                gestureMode === 'rotate-left' && <div className="btn-round b"></div>
                             }{
-                                gestureMode !== 'rotate-left' && <div class="btn-round-a a"></div>
+                                gestureMode !== 'rotate-left' && <div className="btn-round-a a"></div>
                             }
                         </div>
                     </div>
-                    <div class="buttons-select">
-                        <div class="btn-central-a select"></div>
+                    <div className="buttons-select">
+                        <div className="btn-central-a select"></div>
                         {
-                            gestureMode !== 'start-game' && <div class="btn-central-a start"></div>
+                            gestureMode !== 'start-game' && <div className="btn-central-a start"></div>
                         } {
-                            gestureMode === 'start-game' && <div class="btn-central start"></div>
+                            gestureMode === 'start-game' && <div className="btn-central start"></div>
                         }
 
                     </div>

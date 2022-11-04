@@ -15,8 +15,6 @@ const Emulator = ({
 
     useEffect(() => {
         console.log("Emulator")
-        canvasRef.current.width = 512;
-        canvasRef.current.height = 480;
         var ctx = canvasRef.current.getContext('2d', { willReadFrequently: true });
         var imageData = ctx.getImageData(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
         var frameBuffer = new ArrayBuffer(imageData.data.length);
@@ -62,8 +60,8 @@ const Emulator = ({
                 // Display each new frame on the canvas
                 onFrame: function (frameBuffer) {
                     var i = 0;
-                    for (var y = 0; y < SCREEN_WIDTH; ++y) {
-                        for (var x = 0; x < SCREEN_HEIGHT; ++x) {
+                    for (var y = 0; y < SCREEN_HEIGHT; ++y) {
+                        for (var x = 0; x < SCREEN_WIDTH; ++x) {
                             i = y * SCREEN_WIDTH + x;
                             frameBuffer32[i] = 0xff000000 | frameBuffer[i];
                         }
@@ -71,12 +69,26 @@ const Emulator = ({
                     imageData.data.set(frameBuffer8);
                     ctx.putImageData(imageData, 0, 0);
 
+
                     ctx.globalCompositeOperation = 'copy';
-                    // now we can draw ourself over ourself.
-                    ctx.drawImage(canvasRef.current,
-                    0,0, imageData.width, imageData.height, // grab the ImageData part
-                    0,0, canvasRef.current.width, canvasRef.current.height // scale it
-                    );
+
+                    const parent = canvasRef.current.parentNode;
+                    const parentWidth = parent.clientWidth;
+                    const parentHeight = parent.clientHeight;
+                    const parentRatio = parentWidth / parentHeight;
+                    const desiredRatio = SCREEN_WIDTH / SCREEN_HEIGHT;
+
+                    parentRatio < desiredRatio ?
+                        ctx.drawImage(canvasRef.current, 0, 0, imageData.width, imageData.height, // grab the ImageData part
+                        0,0, parentWidth, parentWidth / desiredRatio) :
+                        ctx.drawImage(canvasRef.current, 0, 0, imageData.width, imageData.height, // grab the ImageData part
+                        0,0, parentHeight * desiredRatio, parentHeight);
+
+                    // // now we can draw ourself over ourself.
+                    // ctx.drawImage(canvasRef.current,
+                    // 0,0, imageData.width, imageData.height, // grab the ImageData part
+                    // 0,0, canvasRef.current.width, canvasRef.current.height // scale it
+                    // );
                 },
 
                 // Add new audio samples to the Audio buffers
@@ -128,7 +140,7 @@ const Emulator = ({
     }, []);
 
     return (
-        <canvas ref={canvasRef} width={512} height={480} />
+        <canvas className='emulatorCanvas' ref={canvasRef} width={512} height={480}/>
     )
 }
 

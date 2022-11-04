@@ -63,7 +63,7 @@ const Game = ({
 
     return (
         <div className="Game">
-            <div className="game-container">
+            <div className="gameContainer">
                 {
                     <Emulator
                         romPath={`/roms/${game}.nes`}
