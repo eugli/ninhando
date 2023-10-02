@@ -9,6 +9,15 @@ tracks your hand gestures and converts those movements into playable actions for
 
 The rest of the project used the react framework and was written in javascript.
 
+### Challenges Encountered
+
+1) Running the app to run in the browser without significant input delay.
+
+2) Creating a generic solution for all nes games and for all hand gestures.
+
+3) Trying to create flexible and custom solution for hand gestures.
+
+
 ## Installation
 
 Clone repository in your IDE and run the following command.
@@ -16,5 +25,26 @@ Clone repository in your IDE and run the following command.
 ```shell
 $ npm start
 ```
+
+If your local machine doesn't have npm installed follow the doc to install npm [`here`](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm). 
+
+## Video Example
+
+The link below demonstrates what hand gesture correlates to what command and showcases how it works with the emulator.
+
+Link: https://youtu.be/dDTieCGlgBY
+
+### Future Plans
+
+We are currently working on expanding the project to include a LAN multiplayer setting and expanding on the motion sensor to a full body motion sensor that can capture games like Mortal Kombat.
+
+## Contributors
+
+ * Euegene Li
+ * Benny Cortese
+ * Leon Kwan
+ * Tianwei Xie
+
+
 
 
